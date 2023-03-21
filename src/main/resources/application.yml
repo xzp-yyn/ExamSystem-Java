@@ -1,5 +1,0 @@
-server:
-  port: 9999
-spring:
-  application:
-    name: exam-data-vil
