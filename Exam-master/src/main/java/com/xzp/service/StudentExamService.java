@@ -37,4 +37,8 @@ public interface StudentExamService extends IService<StudentExam> {
 
     List<StudentExam> getUserAndScore();
 
+    StudentExam getPassPercentageData();
+
+    List<StudentExam> perstuQualify();
+
 }

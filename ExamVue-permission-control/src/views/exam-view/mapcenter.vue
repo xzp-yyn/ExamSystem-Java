@@ -16,7 +16,7 @@
 </template>
 <script>
 import Charts from '@jiaminghi/charts'
-import { getPercentage } from '@/api/data/dataview'
+import { getPercentage, stuqueRanking } from '@/api/data/dataview'
 import { config5, config9 } from './config.js'
 export default {
   name: 'mapcenter',
@@ -29,9 +29,20 @@ export default {
   },
   mounted() {
     this.topinit()
+    this.bottominit()
   },
   created() {},
   methods: {
+    bottominit() {
+      stuqueRanking().then((res) => {
+        this.config9 = {
+          data: res.data,
+          colors: ['#e062ae', '#fb7293', '#e690d1', '#32c5e9', '#96bfff'],
+          unit: '答题总数',
+          showValue: true,
+        }
+      })
+    },
     topinit() {
       const container = document.getElementById('top')
       const myChart = this.$echarts.init(container)

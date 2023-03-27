@@ -13,6 +13,7 @@
 </template>
 <script>
 import { config8, config10 } from './config.js'
+import { passingPercentage, perstuPercentage } from '@/api/data/dataview'
 export default {
   name: 'right',
   data: function () {
@@ -20,6 +21,72 @@ export default {
       config8,
       config10,
     }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      passingPercentage().then((res) => {
+        this.config8 = {
+          title: {
+            text: '考试及格率',
+            style: {
+              fill: '#fff',
+            },
+          },
+
+          series: [
+            {
+              type: 'gauge',
+              name: 'xx',
+              details: {
+                offset: [100, 10],
+                show: true,
+                // style: {
+                //   fontSize: 20,
+                //   fontWeight: 'bold',
+                //   textAlign: 'center',
+                //   textBaseline: 'middle',
+                // },
+              },
+              data: [
+                {
+                  name: 'itemA',
+                  value: res.data,
+                  gradient: ['#e7bcf3', '#e690d1', '#fb7293'],
+                  localGradient: true,
+                },
+              ],
+              center: ['50%', '55%'],
+              axisLabel: {
+                formatter: '{value}%',
+                style: {
+                  fill: '#fff',
+                },
+              },
+              axisTick: {
+                style: {
+                  stroke: '#fff',
+                },
+              },
+              animationCurve: 'easeInOutBack',
+            },
+          ],
+        }
+      })
+      perstuPercentage().then((res) => {
+        this.config10 = {
+          data: res.data,
+          radius: '40%',
+          activeRadius: '45%',
+          digitalFlopStyle: {
+            fontSize: 20,
+          },
+          showOriginValue: true,
+        }
+      })
+    },
   },
 }
 </script>

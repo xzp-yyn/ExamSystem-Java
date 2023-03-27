@@ -1,5 +1,7 @@
 package com.xzp.service;
 
+import com.xzp.pojo.po.StudentExam;
+
 import java.util.List;
 import java.util.Map;
 
@@ -30,5 +32,10 @@ public interface DataViewService {
     List<Map<String, Object>> getQuestionPercen();
 
     List<Map<String,Object>> getStuQuesRanking();
+
+    Integer getPassPercentage();
+
+    List<Map<String,Object>> perstuQualify();
+
 
 }

@@ -25,5 +25,15 @@
     <select id="getUserAndScore" resultMap="BaseResultMap">
         select student_id,sum(score) as score from s_student_exam where is_finished=true and is_qualify=true and  is_checked=true group by student_id
     </select>
+    <select id="getPassPercentageData" resultType="com.xzp.pojo.po.StudentExam">
+         select a.sum sum,b.qualify qualify from
+         (select count(*) as sum  from s_student_exam where is_checked=true) a join
+         (select count(*) as qualify from s_student_exam where is_checked=true and is_qualify=true) b;
+    </select>
+    <select id="perstuQualify" resultType="com.xzp.pojo.po.StudentExam">
+        select b.student_id,a.qualify, b.sum from
+         (select  student_id, count(*) as qualify from s_student_exam where is_qualify=true and is_checked=true group by student_id) a  join
+        (select student_id, count(*) as sum from s_student_exam group by student_id) b on a.student_id=b.student_id;
+    </select>
 
 </mapper>

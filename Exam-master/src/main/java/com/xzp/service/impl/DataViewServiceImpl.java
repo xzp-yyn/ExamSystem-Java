@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -161,5 +162,29 @@ public class DataViewServiceImpl implements DataViewService {
             }
         }
         return finalNewMaps;
+    }
+    @Override
+    public Integer getPassPercentage() {
+        StudentExam studentExam = studentExamService.getPassPercentageData();
+        DecimalFormat format = new DecimalFormat("##.00%");
+        String per = format.format(studentExam.getQualify().doubleValue() / studentExam.getSum().doubleValue()).substring(0,2);
+        return Integer.valueOf(per);
+    }
+
+    @Override
+    public List<Map<String, Object>> perstuQualify() {
+        List<Map<String, Object>> arrayList = new ArrayList<>();
+        List<StudentExam> studentExams = studentExamService.perstuQualify();
+        studentExams.stream().forEach(e->{
+            String username = userService.getById(e.getStudentId()).getUsername();
+            ConcurrentHashMap<String, Object> hashMap = new ConcurrentHashMap<>();
+            DecimalFormat format = new DecimalFormat("###.00%");
+            String format1 = format.format(e.getQualify().doubleValue() / e.getSum().doubleValue());
+            Integer percentage= Integer.valueOf(format1.substring(0,format1.indexOf('.')));
+            hashMap.put("name",username);
+            hashMap.put("value",percentage);
+            arrayList.add(hashMap);
+        });
+        return arrayList;
     }
 }

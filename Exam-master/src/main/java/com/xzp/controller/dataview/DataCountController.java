@@ -55,7 +55,18 @@ public class DataCountController {
         List<Map<String, Object>> maps = dataViewService.getQuestionPercen();
         return BaseResult.successData(maps);
     }
+    @GetMapping("/stuqueRanking")
+    public BaseResult stuQuesCount(){
+        return BaseResult.successData(dataViewService.getStuQuesRanking());
+    }
 
+    @GetMapping("/passingPercentage")
+    public BaseResult passingPercentage(){
+        return BaseResult.successData(dataViewService.getPassPercentage());
+    }
 
-
+    @GetMapping("/perstuPercentage")
+    public BaseResult perstuPercentage(){
+        return BaseResult.successData(dataViewService.perstuQualify());
+    }
 }

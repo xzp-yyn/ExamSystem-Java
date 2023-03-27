@@ -305,4 +305,14 @@ public class StudentExamServiceImpl extends ServiceImpl<StudentExamMapper, Stude
         List<StudentExam> studentExams= baseMapper.getUserAndScore();
         return studentExams;
     }
+
+    @Override
+    public StudentExam getPassPercentageData(){
+        return baseMapper.getPassPercentageData();
+    }
+
+    @Override
+    public List<StudentExam> perstuQualify() {
+        return baseMapper.perstuQualify();
+    }
 }

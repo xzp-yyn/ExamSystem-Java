@@ -1,6 +1,5 @@
 package com.xzp;
 
-import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.xzp.pojo.po.StudentExam;
@@ -13,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -67,8 +64,9 @@ public class Test {
 
     @org.junit.Test
     public void test4(){
-        List<Map<String, Object>> ranking = dataViewService.getStuQuesRanking();
-        System.out.println(ranking.toString());
+        List<Map<String, Object>> percentage = dataViewService.perstuQualify();
+        System.out.println(percentage);
+
     }
 
 

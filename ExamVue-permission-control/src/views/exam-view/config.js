@@ -362,7 +362,7 @@ const config8 = {
   series: [
     {
       type: 'gauge',
-      data: [{ name: 'itemA', value: 55, gradient: ['#e7bcf3', '#e690d1', '#fb7293'], localGradient: true }],
+      data: [{ name: 'itemA', value: 80, gradient: ['#e7bcf3', '#e690d1', '#fb7293'], localGradient: true }],
       center: ['50%', '55%'],
       axisLabel: {
         formatter: '{value}%',

@@ -18,6 +18,11 @@ public interface StudentExamMapper extends BaseMapper<StudentExam> {
 
     List<StudentExam> getUserAndScore();
 
+    StudentExam getPassPercentageData();
+
+    List<StudentExam> perstuQualify();
+
+
 }
 
 

@@ -23,3 +23,29 @@ export function getPercentage () {
     method: "get"
   })
 }
+// 获取学生已答题数量
+export function stuqueRanking () {
+  return request({
+    url: "/data/stuqueRanking",
+    method: "get"
+  })
+}
+
+//
+// 考试及格率
+export function passingPercentage () {
+  return request({
+    url: "/data/passingPercentage",
+    method: "get"
+  })
+}
+
+// perstuPercentage
+// 每个学生的及格率
+export function perstuPercentage () {
+  return request({
+    url: "/data/perstuPercentage",
+    method: "get"
+  })
+}
+
