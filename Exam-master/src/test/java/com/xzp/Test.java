@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.xzp.pojo.po.StudentExam;
+import com.xzp.service.DataViewService;
 import com.xzp.service.PaperService;
 import com.xzp.service.StudentExamService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 时间未到，资格未够，继续努力！
@@ -40,6 +38,9 @@ public class Test {
 
     @Autowired
     private PaperService paperService;
+
+    @Autowired
+    private DataViewService dataViewService;
 
    @org.junit.Test
    public void test1(){
@@ -63,5 +64,13 @@ public class Test {
         List<StudentExam> andScore = studentExamService.getUserAndScore();
         System.out.println(Arrays.toString(andScore.toArray()));
     }
+
+    @org.junit.Test
+    public void test4(){
+        List<Map<String, Object>> ranking = dataViewService.getStuQuesRanking();
+        System.out.println(ranking.toString());
+    }
+
+
 
 }

@@ -2,6 +2,7 @@ package com.xzp.service;
 
 import com.xzp.pojo.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author wangpeng
@@ -64,5 +65,7 @@ public interface UserService extends IService<User> {
     void deleteUser(User user);
 
     User selectUser(String username);
+
+    String getNameByExamId(Integer id);
 
 }

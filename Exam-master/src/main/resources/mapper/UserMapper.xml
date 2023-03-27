@@ -16,4 +16,9 @@
         id,username,password,
         role,profile
     </sql>
+    <select id="getNameByExamId" resultType="java.lang.String">
+         select username from sys_user where id=
+    (select student_id from s_student_exam where id=#{id});
+    </select>
+
 </mapper>

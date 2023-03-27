@@ -29,4 +29,6 @@ public interface DataViewService {
 
     List<Map<String, Object>> getQuestionPercen();
 
+    List<Map<String,Object>> getStuQuesRanking();
+
 }

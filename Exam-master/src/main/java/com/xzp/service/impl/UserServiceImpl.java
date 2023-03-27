@@ -100,4 +100,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = this.baseMapper.selectOne(queryWrapper);
         return user;
     }
+
+    @Override
+    public String getNameByExamId(Integer id) {
+
+        return baseMapper.getNameByExamId(id);
+    }
 }

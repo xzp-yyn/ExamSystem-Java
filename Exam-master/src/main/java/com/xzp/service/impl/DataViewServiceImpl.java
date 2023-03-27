@@ -2,6 +2,7 @@ package com.xzp.service.impl;
 
 import com.xzp.pojo.po.Question;
 import com.xzp.pojo.po.StudentExam;
+import com.xzp.pojo.po.StudentQuestion;
 import com.xzp.pojo.po.User;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
 import com.xzp.service.*;
@@ -9,10 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * 时间未到，资格未够，继续努力！
@@ -117,5 +117,49 @@ public class DataViewServiceImpl implements DataViewService {
             maps.add(hashMap);
         });
         return maps;
+    }
+
+    @Override
+    public List<Map<String,Object>> getStuQuesRanking(){
+        List<Map<String, Object>> maps = new ArrayList<>();
+        List<Map<String, Object>> finalNewMaps=new ArrayList<>();
+        List<StudentQuestion> studentQuestions = studentQuestionService.getquestionCount();
+        if(studentQuestions.size()>0){
+            studentQuestions.stream().forEach(item->{
+                String name = userService.getNameByExamId(item.getStudentExamId());
+                HashMap<String, Object> hashMap = new HashMap<>();
+                hashMap.put("name",name);
+                hashMap.put("value",item.getCounts());
+                maps.add(hashMap);
+//                        maps.forEach(map -> {
+//                            if (!map.containsValue(name) || maps.size() == 0) {
+//                                Map<String, Object> hashMap = new ConcurrentHashMap<>();
+//                                hashMap.put("name", name);
+//                                hashMap.put("value", item.getCounts());
+//                                maps.add(hashMap);
+//                            } else {
+//                                Integer value = (Integer) map.get("value");
+//                                map.put("value", value + item.getCounts());
+//                            }
+//                        });
+            });
+            //遍历maps进行重复名称的数量相加
+            for (int i = 0; i < maps.size(); i++) {
+                if(finalNewMaps.size()==0){
+                    finalNewMaps.add(maps.get(i));
+                }else {
+                    Map<String, Object> objectMap = maps.get(i);
+                    for (int j = 0; j < finalNewMaps.size(); j++) {
+                        if(objectMap.get("name").equals(finalNewMaps.get(j).get("name"))){
+                                Integer value=(Integer) objectMap.get("value")+(Integer)finalNewMaps.get(j).get("value");
+                                objectMap.put("value",value);
+                                finalNewMaps.remove(j);
+                        }
+                    }
+                    finalNewMaps.add(objectMap);
+                }
+            }
+        }
+        return finalNewMaps;
     }
 }

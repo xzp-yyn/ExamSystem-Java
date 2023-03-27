@@ -27,4 +27,8 @@
          (select is_checked from s_student_exam where s_student_question.student_exam_id=s_student_exam.id)=true group by question_id
          order by counts desc limit 10;
     </select>
+    <select id="getquestionCount" resultType="com.xzp.pojo.po.StudentQuestion">
+        select student_exam_id, count(*) as counts from s_student_question where student_exam_id in
+                                                        (select id from s_student_exam where is_finished=true group by id) group by student_exam_id;
+    </select>
 </mapper>

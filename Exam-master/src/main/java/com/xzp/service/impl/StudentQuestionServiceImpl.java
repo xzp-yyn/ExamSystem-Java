@@ -24,6 +24,11 @@ public class StudentQuestionServiceImpl extends ServiceImpl<StudentQuestionMappe
         List<StudentQuestionVO> vos= baseMapper.getQuesPercen();
         return vos;
     }
+
+    @Override
+    public List<StudentQuestion> getquestionCount() {
+        return baseMapper.getquestionCount();
+    }
 }
 
 

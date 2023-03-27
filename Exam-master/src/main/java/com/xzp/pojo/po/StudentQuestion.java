@@ -70,4 +70,10 @@ public class StudentQuestion implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 某场考试题目数量
+     */
+    @TableField(exist = false)
+    private Integer  counts;
 }

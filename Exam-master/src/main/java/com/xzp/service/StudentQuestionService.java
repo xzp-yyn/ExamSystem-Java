@@ -18,4 +18,7 @@ public interface StudentQuestionService extends IService<StudentQuestion> {
 
     List<StudentQuestionVO> getQuestionPercen();
 
+    List<StudentQuestion> getquestionCount();
+
+
 }

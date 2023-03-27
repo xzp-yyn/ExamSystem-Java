@@ -19,6 +19,8 @@ public interface StudentQuestionMapper extends BaseMapper<StudentQuestion> {
 
     List<StudentQuestionVO> getQuesPercen();
 
+    List<StudentQuestion> getquestionCount();
+
 }
 
 
