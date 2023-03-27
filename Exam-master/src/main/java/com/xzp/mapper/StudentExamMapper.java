@@ -4,6 +4,8 @@ import com.xzp.pojo.po.StudentExam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * 学生考试映射器
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentExamMapper extends BaseMapper<StudentExam> {
+
+    List<StudentExam> getUserAndScore();
 
 }
 

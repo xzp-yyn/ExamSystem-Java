@@ -34,4 +34,7 @@ public interface StudentExamService extends IService<StudentExam> {
     StudentOption getStudentOption(Integer studentQuestionId, int optionId);
 
     boolean onlyHasObject(Integer studentExamId);
+
+    List<StudentExam> getUserAndScore();
+
 }

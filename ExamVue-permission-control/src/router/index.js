@@ -111,7 +111,7 @@ export const asyncRoutes = [
     name: 'ExamManager',
     meta: {
       title: '考试管理',
-      icon: 'more',
+      icon: 'dataV2',
       roles: ['admin']
     },
     children: [
@@ -180,7 +180,7 @@ export const asyncRoutes = [
     name: 'OnlineExamDir',
     meta: {
       title: '在线考试',
-      icon: 'more',
+      icon: 'dataV1',
       roles: ['admin', 'student']
     },
     children: [
@@ -231,6 +231,42 @@ export const asyncRoutes = [
           noCache: true
         },
         hidden: true
+      }
+    ]
+  },
+  // 分析与可视化
+  {
+    path: '/exam-view',
+    component: Layout,
+    redirect: '/exam-view',
+    name: 'DataView',
+    meta: {
+      title: '数据可视化',
+      icon: 'view2',
+      roles: ['admin', 'student']
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/views/exam-view/index'),
+        meta: {
+          title: '考试数据可视化',
+          icon: 'view1',
+          roles: ['admin', 'student'],
+          noCache: true
+        }
+      },
+      {
+        path: 'index1',
+        name: 'index1',
+        component: () => import('@/views/exam-view/index1'),
+        meta: {
+          title: '考试数据可视化',
+          icon: 'view1',
+          roles: ['admin'],
+          noCache: true
+        }
       }
     ]
   },

@@ -18,9 +18,9 @@
                    :clickEffect="true"
                    clickMode="push">
     </vue-particles>
-    <el-row style="line-height: 30px">
+    <el-row style="line-height: 50px">
       <el-row :span="24"
-              style="text-align: center;color:#32c5e9;">欢迎使用在线考试数据分析与可视化系统</el-row>
+              style="text-align: center;color:#32c5e9;font-size: larger;font-weight: bolder;">欢迎使用在线考试数据分析与可视化系统</el-row>
       <el-row :span="24"
               style="text-align: center;align-items: center;">
         <img src="https://img.shields.io/badge/Author-%E8%96%9B%E5%B1%95%E9%B9%8F-brightgreen"

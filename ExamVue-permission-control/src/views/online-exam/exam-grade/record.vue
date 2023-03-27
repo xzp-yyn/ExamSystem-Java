@@ -1,5 +1,25 @@
 <template>
   <div class="app-container">
+    <vue-particles color="#6495ED"
+                   style="
+                  width: 100%;
+                  height: 100%;
+                  position: fixed;"
+                   :particleOpacity="1.0"
+                   :particlesNumber="80"
+                   shapeType="star"
+                   :particleSize="4"
+                   linesColor="#6495ED"
+                   :linesWidth="1"
+                   :lineLinked="true"
+                   :lineOpacity="0.6"
+                   :linesDistance="150"
+                   :moveSpeed="3"
+                   :hoverEffect="true"
+                   hoverMode="grab"
+                   :clickEffect="true"
+                   clickMode="push">
+    </vue-particles>
     <!-- 顶部功能 -->
     <div class="filter-container"
          style="margin-bottom: 15px">

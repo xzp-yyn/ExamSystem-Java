@@ -1,7 +1,7 @@
 package com.xzp.controller.system;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.xzp.other.anno.ViewCountAnnotion;
 import com.xzp.pojo.dto.LoginDTO;
 import com.xzp.pojo.dto.RegisterDTO;
 import com.xzp.pojo.enums.RoleEnum;
@@ -72,6 +72,7 @@ public class SystemUserController {
      * @return
      */
     @PostMapping(value = "/login")
+    @ViewCountAnnotion
     public BaseResult login(@RequestBody LoginDTO loginDTO) {
         // 取数据
         String username = loginDTO.getUsername();

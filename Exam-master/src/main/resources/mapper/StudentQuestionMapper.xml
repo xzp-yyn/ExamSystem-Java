@@ -22,4 +22,9 @@
         type,score,got_score,order_num,
         answer,is_answered,is_right
     </sql>
+    <select id="getQuesPercen" resultType="com.xzp.pojo.vo.student.StudentQuestionVO">
+        select question_id,count(question_id) as counts  from s_student_question where is_right=false and
+         (select is_checked from s_student_exam where s_student_question.student_exam_id=s_student_exam.id)=true group by question_id
+         order by counts desc limit 10;
+    </select>
 </mapper>

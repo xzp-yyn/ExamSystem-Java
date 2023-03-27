@@ -2,7 +2,10 @@ package com.xzp.mapper;
 
 import com.xzp.pojo.po.StudentQuestion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xzp.pojo.vo.student.StudentQuestionVO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentQuestionMapper extends BaseMapper<StudentQuestion> {
+
+    List<StudentQuestionVO> getQuesPercen();
 
 }
 

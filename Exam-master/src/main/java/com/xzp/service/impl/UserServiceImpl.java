@@ -17,11 +17,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
+
 /**
-* @author wangpeng
-* @description 针对表【sys_user(用户表)】的数据库操作Service实现
-* @createDate 2022-03-20 12:27:45
-*/
+ * 用户服务impl
+ *  针对表【sys_user(用户表)】的数据库操作Service实现
+ * @author 薛展鹏
+ * @date 2023/03/26
+ */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService{
 
@@ -30,6 +32,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private StudentExamMapper studentExamMapper;
+
+    private String TOKEN_PRO="token:";
 
     @Override
     public void redisSaveCode(String key, String code) {
@@ -52,19 +56,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public void redisSaveUser(String token, User user) {
         // key是token，value是用户保存到redis中，超时时间24小时
-        redisTemplate.opsForValue().set(token, user, 24, TimeUnit.HOURS);
+        redisTemplate.opsForValue().set(TOKEN_PRO+token, user, 24, TimeUnit.HOURS);
     }
 
     @Override
     public User redisGetUser(String token) {
         // 根据token得到user
-        return (User) redisTemplate.opsForValue().get(token);
+        return (User) redisTemplate.opsForValue().get(TOKEN_PRO+token);
     }
 
     @Override
     public void redisRemoveUser(String token) {
         // 移除token
-        redisTemplate.delete(token);
+        redisTemplate.delete(TOKEN_PRO+token);
     }
 
     @Override

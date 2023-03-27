@@ -1,109 +1,135 @@
 <template>
   <div class="app-container">
+    <vue-particles color="#6495ED"
+                   style="width: 100%;height: 100%;position: fixed;"
+                   :particleOpacity="1.0"
+                   :particlesNumber="80"
+                   shapeType="star"
+                   :particleSize="4"
+                   linesColor="#6495ED"
+                   :linesWidth="1"
+                   :lineLinked="true"
+                   :lineOpacity="0.6"
+                   :linesDistance="150"
+                   :moveSpeed="3"
+                   :hoverEffect="true"
+                   hoverMode="grab"
+                   :clickEffect="true"
+                   clickMode="push">
+    </vue-particles>
     <!-- 顶部功能 -->
-    <div class="filter-container" style="margin-bottom: 15px">
+    <div class="filter-container"
+         style="margin-bottom: 15px">
       <!-- 学生列表 -->
-      <el-select v-model="queryParam.studentId" placeholder="请选择学生">
-        <el-option v-for="item in studentData" :key="item.id" :label="item.username" :value="item.id" />
+      <el-select v-model="queryParam.studentId"
+                 placeholder="请选择学生">
+        <el-option v-for="item in studentData"
+                   :key="item.id"
+                   :label="item.username"
+                   :value="item.id" />
       </el-select>
       <!-- 考试开始结束时间 -->
-      <el-date-picker
-        v-model="timeValue"
-        type="datetimerange"
-        range-separator="至"
-        start-placeholder="考试开始时间"
-        end-placeholder="考试结束时间"
-      />
+      <el-date-picker v-model="timeValue"
+                      type="datetimerange"
+                      range-separator="至"
+                      start-placeholder="考试开始时间"
+                      end-placeholder="考试结束时间" />
       <!-- 一些按钮 -->
-      <el-button
-        v-waves
-        class="filter-item"
-        type="primary"
-        icon="el-icon-search"
-        @click="handleFilter"
-      >
+      <el-button v-waves
+                 class="filter-item"
+                 type="primary"
+                 icon="el-icon-search"
+                 @click="handleFilter">
         搜索
       </el-button>
-      <el-button
-        v-waves
-        class="filter-item"
-        type="primary"
-        icon="el-icon-search"
-        @click="handleShowAll"
-      >
+      <el-button v-waves
+                 class="filter-item"
+                 type="primary"
+                 icon="el-icon-search"
+                 @click="handleShowAll">
         显示全部
       </el-button>
     </div>
 
     <!--数据表格-->
-    <el-table ref="multipleTable" :data="tableData" border>
+    <el-table ref="multipleTable"
+              :data="tableData"
+              border>
 
-      <el-table-column prop="id" label="序号" align="center" />
+      <el-table-column prop="id"
+                       label="序号"
+                       align="center" />
 
-      <el-table-column prop="studentName" label="学生姓名" align="center" />
+      <el-table-column prop="studentName"
+                       label="学生姓名"
+                       align="center" />
 
-      <el-table-column
-        label="考试名"
-        align="center"
-        width="300"
-        show-overflow-tooltip
-      >
+      <el-table-column label="考试名"
+                       align="center"
+                       width="300"
+                       show-overflow-tooltip>
         <template slot-scope="scope">
-          <el-link type="primary" @click="handleDetail(scope.row)">{{
+          <el-link type="primary"
+                   @click="handleDetail(scope.row)">{{
             scope.row.examName
           }}</el-link>
         </template>
       </el-table-column>
 
-      <el-table-column prop="startTime" label="考试开始时间" align="center" />
+      <el-table-column prop="startTime"
+                       label="考试开始时间"
+                       align="center" />
 
-      <el-table-column prop="finishTime" label="考试结束时间" align="center" />
+      <el-table-column prop="finishTime"
+                       label="考试结束时间"
+                       align="center" />
 
-      <el-table-column prop="score" label="考试得分" align="center" />
+      <el-table-column prop="score"
+                       label="考试得分"
+                       align="center" />
 
-      <el-table-column prop="isQualify" label="是否及格" align="center">
+      <el-table-column prop="isQualify"
+                       label="是否及格"
+                       align="center">
         <template slot-scope="scope">
-          <span v-if="scope.row.isQualify === 1" style="color: green">是</span>
-          <span v-else style="color: red">否</span>
+          <span v-if="scope.row.isQualify === 1"
+                style="color: green">是</span>
+          <span v-else
+                style="color: red">否</span>
         </template>
       </el-table-column>
 
-      <el-table-column fixed="right" label="操作" width="250" align="center">
+      <el-table-column fixed="right"
+                       label="操作"
+                       width="250"
+                       align="center">
         <template slot-scope="scope">
-          <el-button
-            type="success"
-            size="small"
-            @click="handleDetail(scope.row)"
-          >查看试卷详细情况</el-button>
+          <el-button type="success"
+                     size="small"
+                     @click="handleDetail(scope.row)">查看试卷详细情况</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!--分页条-->
-    <el-pagination
-      background
-      :current-page.sync="queryParam.page"
-      :page-sizes="[5, 10, 20, 50]"
-      :page-size="queryParam.limit"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="recordTotal"
-      style="margin-top: 15px;margin-left: 30%;"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
+    <el-pagination background
+                   :current-page.sync="queryParam.page"
+                   :page-sizes="[5, 10, 20, 50]"
+                   :page-size="queryParam.limit"
+                   layout="total, sizes, prev, pager, next, jumper"
+                   :total="recordTotal"
+                   style="margin-top: 15px;margin-left: 30%;"
+                   @size-change="handleSizeChange"
+                   @current-change="handleCurrentChange" />
   </div>
 </template>
 
 <script>
 import waves from '@/directive/waves' // waves directive
 
-import {
-  queryAllStudents
-} from '@/api/admin/user'
+import { queryAllStudents } from '@/api/admin/user'
 
-import {
-  queryGradePage
-} from '@/api/student/grade'
+import { queryGradePage } from '@/api/student/grade'
 
 export default {
   name: 'GradeList',
@@ -122,12 +148,12 @@ export default {
         limit: 10,
         studentId: null,
         startTime: null,
-        endTime: null
+        endTime: null,
       },
       // 时间值
       timeValue: [],
       // 考试id
-      examId: null
+      examId: null,
     }
   },
   watch: {
@@ -135,13 +161,13 @@ export default {
       handler() {
         this.queryParam.startTime = this.getyyyyMMdd(this.timeValue[0])
         this.queryParam.endTime = this.getyyyyMMdd(this.timeValue[1])
-      }
-    }
+      },
+    },
   },
   // 创建后
   created() {
     // 获取学生信息
-    queryAllStudents().then(res => {
+    queryAllStudents().then((res) => {
       if (res.status === 200) {
         this.studentData = res.data
       }
@@ -165,7 +191,18 @@ export default {
       String(minute).length < 2 ? (minute = '0' + minute) : minute
       String(second).length < 2 ? (second = '0' + second) : second
 
-      const res = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      const res =
+        year +
+        '-' +
+        month +
+        '-' +
+        day +
+        ' ' +
+        hour +
+        ':' +
+        minute +
+        ':' +
+        second
       return res
     },
 
@@ -210,9 +247,12 @@ export default {
     // 处理详情
     handleDetail(item) {
       // 带着studentExamId到ExamDetail页面
-      this.$router.push({ name: 'ExamDetail', params: { studentExamId: item.id }})
-    }
-  }
+      this.$router.push({
+        name: 'ExamDetail',
+        params: { studentExamId: item.id },
+      })
+    },
+  },
 }
 </script>
 

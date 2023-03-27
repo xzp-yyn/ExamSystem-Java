@@ -22,5 +22,8 @@
         id,student_id,exam_id,is_finished,start_time,finish_time,score,total_score,qualify_score
         is_qualify,is_checked
     </sql>
+    <select id="getUserAndScore" resultMap="BaseResultMap">
+        select student_id,sum(score) as score from s_student_exam where is_finished=true and is_qualify=true and  is_checked=true group by student_id
+    </select>
 
 </mapper>

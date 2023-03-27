@@ -300,4 +300,9 @@ public class StudentExamServiceImpl extends ServiceImpl<StudentExamMapper, Stude
         return true;
     }
 
+    @Override
+    public List<StudentExam> getUserAndScore() {
+        List<StudentExam> studentExams= baseMapper.getUserAndScore();
+        return studentExams;
+    }
 }

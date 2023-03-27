@@ -8,10 +8,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+
 /**
- * @Author: 王鹏
- * @Date: 2022/04/11/21:48
- * @Description: 答案
+ * 学生签证官
+ *
+ * @author 薛展鹏
+ * @date 2023/03/26
  */
 @Data
 public class StudentQuestionVO implements Serializable {
@@ -55,4 +57,9 @@ public class StudentQuestionVO implements Serializable {
      * 选项信息
      */
     private List<StudentOption> options;
+
+    /**
+     * 出错问题数量
+     */
+    private Integer counts;
 }

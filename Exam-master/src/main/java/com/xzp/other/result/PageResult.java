@@ -2,10 +2,12 @@ package com.xzp.other.result;
 
 import lombok.Data;
 
+
 /**
- * @Author: 王鹏
- * @Date: 2022/03/21/17:55
- * @Description:
+ * PageResult
+ *
+ * @author 薛展鹏
+ * @date 2023/03/26
  */
 @Data
 public class PageResult extends BaseResult{
