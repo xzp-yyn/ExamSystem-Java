@@ -1,14 +1,14 @@
 package com.xzp.controller.admin;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xzp.other.result.BaseResult;
+import com.xzp.other.result.PageResult;
 import com.xzp.pojo.dto.QueryPageExamDTO;
 import com.xzp.pojo.po.Exam;
 import com.xzp.pojo.po.Paper;
-import com.xzp.other.result.BaseResult;
-import com.xzp.other.result.PageResult;
+import com.xzp.pojo.vo.ExamVO;
 import com.xzp.service.ExamService;
 import com.xzp.service.PaperService;
-import com.xzp.pojo.vo.ExamVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

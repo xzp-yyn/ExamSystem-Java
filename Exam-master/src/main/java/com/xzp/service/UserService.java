@@ -1,8 +1,7 @@
 package com.xzp.service;
 
-import com.xzp.pojo.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Param;
+import com.xzp.pojo.po.User;
 
 /**
  * 用户服务

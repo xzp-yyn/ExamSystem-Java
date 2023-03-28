@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzp.mapper.ExamMapper;
 import com.xzp.mapper.StudentExamMapper;
 import com.xzp.pojo.dto.QueryPageExamDTO;
 import com.xzp.pojo.po.Exam;
 import com.xzp.pojo.po.StudentExam;
 import com.xzp.service.ExamService;
-import com.xzp.mapper.ExamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

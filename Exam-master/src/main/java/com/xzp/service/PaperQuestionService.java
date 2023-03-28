@@ -1,7 +1,7 @@
 package com.xzp.service;
 
-import com.xzp.pojo.po.PaperQuestion;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xzp.pojo.po.PaperQuestion;
 
 /**
  * 论文问题服务

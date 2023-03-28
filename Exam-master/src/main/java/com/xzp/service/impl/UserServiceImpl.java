@@ -4,15 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzp.mapper.StudentExamMapper;
+import com.xzp.mapper.UserMapper;
 import com.xzp.pojo.po.StudentExam;
 import com.xzp.pojo.po.User;
 import com.xzp.service.UserService;
-import com.xzp.mapper.UserMapper;
-import com.xzp.other.utils.ObjectRedisSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;

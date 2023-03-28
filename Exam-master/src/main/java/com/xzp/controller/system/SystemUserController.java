@@ -1,19 +1,17 @@
 package com.xzp.controller.system;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wf.captcha.SpecCaptcha;
 import com.xzp.other.anno.ViewCountAnnotion;
+import com.xzp.other.result.BaseResult;
+import com.xzp.other.utils.TokenProcessor;
 import com.xzp.pojo.dto.LoginDTO;
 import com.xzp.pojo.dto.RegisterDTO;
 import com.xzp.pojo.enums.RoleEnum;
 import com.xzp.pojo.po.User;
 import com.xzp.service.UserService;
-import com.xzp.other.result.BaseResult;
-import com.xzp.other.utils.TokenProcessor;
-import com.wf.captcha.SpecCaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
 
 /**
  * 系统用户控制器

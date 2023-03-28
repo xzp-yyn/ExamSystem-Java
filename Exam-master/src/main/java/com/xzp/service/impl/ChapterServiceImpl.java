@@ -2,12 +2,12 @@ package com.xzp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzp.mapper.ChapterMapper;
 import com.xzp.mapper.QuestionMapper;
 import com.xzp.pojo.po.Chapter;
 import com.xzp.pojo.po.Question;
 import com.xzp.pojo.vo.ChapterVO;
 import com.xzp.service.ChapterService;
-import com.xzp.mapper.ChapterMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

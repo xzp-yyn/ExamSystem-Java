@@ -1,9 +1,9 @@
 package com.xzp.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xzp.mapper.PaperQuestionMapper;
 import com.xzp.pojo.po.PaperQuestion;
 import com.xzp.service.PaperQuestionService;
-import com.xzp.mapper.PaperQuestionMapper;
 import org.springframework.stereotype.Service;
 
 /**
