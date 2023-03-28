@@ -5,9 +5,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/15/23:09
+ * 信息回答签证官
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Data
 public class AnswerInfoVO {

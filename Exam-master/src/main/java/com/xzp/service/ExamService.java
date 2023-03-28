@@ -6,10 +6,12 @@ import com.xzp.pojo.po.Exam;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
-* @author wangpeng
-* @description 针对表【t_exam(考试表)】的数据库操作Service
-* @createDate 2022-04-04 16:19:38
-*/
+ * 考试服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_exam(考试表)】的数据库操作Service
+ * @date 2023/03/28
+ */
 public interface ExamService extends IService<Exam> {
 
     Page<Exam> getPage(QueryPageExamDTO queryPageExamDTO);

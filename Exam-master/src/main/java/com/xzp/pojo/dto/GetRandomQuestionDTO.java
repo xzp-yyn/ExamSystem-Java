@@ -5,9 +5,11 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/24/13:27
+ * 得到随机问题dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Data
 public class GetRandomQuestionDTO {

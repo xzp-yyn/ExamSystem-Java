@@ -93,6 +93,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper>
      * @param paperId
      * @return
      */
+    @Override
     public PaperVO getPaperVO(Integer paperId) {
         // 根据id查询试卷
         Paper paper = baseMapper.selectById(paperId);
@@ -110,6 +111,7 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper>
      * @param paperId
      * @return
      */
+    @Override
     public List<List<PaperQuestionVO>> getPaperQuestionVOListList(Integer paperId) {
         // 根据试卷id查询paperQuestion
         QueryWrapper<PaperQuestion> queryWrapper = new QueryWrapper<>();

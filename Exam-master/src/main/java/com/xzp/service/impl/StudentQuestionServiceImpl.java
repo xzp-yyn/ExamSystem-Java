@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【s_student_question(学生答题表)】的数据库操作Service实现
-* @createDate 2022-04-10 13:50:27
-*/
+ * 学生服务impl
+ *
+ * @author 薛展鹏
+ * @description 针对表【s_student_question(学生答题表)】的数据库操作Service实现
+ * @date 2023/03/28
+ */
 @Service
 public class StudentQuestionServiceImpl extends ServiceImpl<StudentQuestionMapper, StudentQuestion>
     implements StudentQuestionService{

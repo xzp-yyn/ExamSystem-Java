@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/09/18/19:56
+ * 用户拦截器
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Component
 public class UserInterceptor implements HandlerInterceptor {

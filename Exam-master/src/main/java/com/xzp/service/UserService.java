@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 
 /**
-* @author wangpeng
-* @description 针对表【sys_user(用户表)】的数据库操作Service
-* @createDate 2022-03-20 12:27:45
-*/
+ * 用户服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【sys_user(用户表)】的数据库操作Service
+ * @date 2023/03/28
+ */
 public interface UserService extends IService<User> {
 
     /**

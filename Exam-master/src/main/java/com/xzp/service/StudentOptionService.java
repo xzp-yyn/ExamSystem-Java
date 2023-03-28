@@ -4,10 +4,12 @@ import com.xzp.pojo.po.StudentOption;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
-* @author wangpeng
-* @description 针对表【s_student_option】的数据库操作Service
-* @createDate 2022-04-16 20:52:02
-*/
+ * 学生选择服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【s_student_option】的数据库操作Service
+ * @date 2023/03/28
+ */
 public interface StudentOptionService extends IService<StudentOption> {
 
 }

@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
-* @author wangpeng
-* @description 针对表【t_exam(考试表)】的数据库操作Service实现
-* @createDate 2022-04-04 16:19:38
-*/
+ * 考试服务impl
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_exam(考试表)】的数据库操作Service实现
+ * @date 2023/03/28
+ */
 @Service
 public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam>
     implements ExamService{

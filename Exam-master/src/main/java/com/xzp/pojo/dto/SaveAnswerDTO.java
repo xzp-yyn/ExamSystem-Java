@@ -6,9 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/16/20:58
+ * 保存答案dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Data
 public class SaveAnswerDTO {

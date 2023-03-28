@@ -7,9 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/19/22:22
+ * mybatis +配置
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 //可以将主类中的注解移到此处
 @Configuration

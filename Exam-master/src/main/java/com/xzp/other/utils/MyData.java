@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/05/04/21:35
+ * 配置数据
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Component
 public class MyData {

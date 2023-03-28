@@ -5,9 +5,11 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/05/04/22:21
+ * 上传服务
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 public interface MyUploadService {
 

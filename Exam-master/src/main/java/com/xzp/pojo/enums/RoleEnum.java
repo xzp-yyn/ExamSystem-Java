@@ -6,9 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/19/20:46
+ * 角色枚举
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Getter
 @AllArgsConstructor

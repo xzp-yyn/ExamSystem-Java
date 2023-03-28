@@ -5,9 +5,11 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/21/0:29
+ * 查询页面用户dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/28
  */
 @Data
 public class QueryPageUserDTO {

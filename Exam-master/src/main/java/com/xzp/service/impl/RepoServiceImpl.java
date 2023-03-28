@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
-* @author wangpeng
-* @description 针对表【t_repo(课程表)】的数据库操作Service实现
-* @createDate 2022-03-21 21:51:45
-*/
+ * 回购服务impl
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_repo(课程表)】的数据库操作Service实现
+ * @date 2023/03/28
+ */
 @Service
 public class RepoServiceImpl extends ServiceImpl<RepoMapper, Repo>
     implements RepoService{

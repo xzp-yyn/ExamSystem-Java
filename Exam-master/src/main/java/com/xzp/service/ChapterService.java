@@ -7,10 +7,12 @@ import com.xzp.pojo.vo.ChapterVO;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【t_chapter(章节表)】的数据库操作Service
-* @createDate 2022-03-21 23:40:10
-*/
+ * 章服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_chapter(章节表)】的数据库操作Service
+ * @date 2023/03/28
+ */
 public interface ChapterService extends IService<Chapter> {
 
     List<ChapterVO> getChapterVOS(Integer repoId);
