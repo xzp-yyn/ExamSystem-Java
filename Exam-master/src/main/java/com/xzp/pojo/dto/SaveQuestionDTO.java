@@ -5,9 +5,11 @@ import com.xzp.pojo.po.Question;
 import lombok.Data;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/27/13:34
+ * 保存问题dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 @Data
 public class SaveQuestionDTO {

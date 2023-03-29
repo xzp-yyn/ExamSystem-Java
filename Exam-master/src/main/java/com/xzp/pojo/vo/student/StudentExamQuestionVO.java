@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/11/21:48
+ * 学生考试签证官问题
+ *
+ * @author 薛展鹏
  * @Description: 发给学生考试界面的题目，不能包含敏感信息
+ * @date 2023/03/29
  */
 @Data
 public class StudentExamQuestionVO implements Serializable {

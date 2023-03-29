@@ -7,9 +7,11 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/02/13:52
+ * 节省纸张dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 @Data
 public class SavePaperDTO {

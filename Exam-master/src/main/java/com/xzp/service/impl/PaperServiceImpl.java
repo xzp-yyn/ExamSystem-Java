@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【t_paper(试卷表)】的数据库操作Service实现
-* @createDate 2022-03-28 11:25:29
-*/
+ * 论文服务impl
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_paper(试卷表)】的数据库操作Service实现
+ * @date 2023/03/29
+ */
 @Service
 public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper>
     implements PaperService{

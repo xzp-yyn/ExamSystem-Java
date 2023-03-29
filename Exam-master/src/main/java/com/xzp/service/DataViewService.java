@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 数据视图服务
  * 时间未到，资格未够，继续努力！
  *
- * @Author xuezhanpeng
- * @Date 2023/3/26 9:26
+ * @author 薛展鹏
  * @Version 1.0
+ * @date 2023/03/29
  */
 public interface DataViewService {
 

@@ -10,8 +10,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
+ * 纸签证官
  * 试卷表
+ *
+ * @author 薛展鹏
  * @TableName t_paper
+ * @date 2023/03/29
  */
 @Data
 public class PaperVO implements Serializable {

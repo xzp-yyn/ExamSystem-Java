@@ -10,8 +10,11 @@ import java.util.Base64;
 import java.util.Random;
 
 /**
- * 生成Token的工具类  
+ * 令牌处理器
+ * 生成Token的工具类
  *
+ * @author 薛展鹏
+ * @date 2023/03/29
  */
 public class TokenProcessor {
 

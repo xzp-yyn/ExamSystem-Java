@@ -1,8 +1,7 @@
 package com.xzp.pojo.enums;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/25/14:08
+
  * @Description:
  */
 
@@ -11,6 +10,12 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 枚举类型
+ *
+ * @author 薛展鹏
+ * @date 2023/03/29
+ */
 @Getter
 @AllArgsConstructor
 public enum TypeEnum {

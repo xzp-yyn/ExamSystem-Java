@@ -8,9 +8,11 @@ import com.alibaba.excel.enums.BooleanEnum;
 import lombok.Data;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/25/22:44
+ * excel问题
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 @Data
 @ContentStyle(wrapped = BooleanEnum.TRUE)

@@ -4,9 +4,11 @@ import com.xzp.pojo.enums.TypeEnum;
 import lombok.Data;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/21/0:29
+ * 查询问题dto
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 @Data
 public class QueryQuestionDTO {

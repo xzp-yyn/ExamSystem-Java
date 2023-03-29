@@ -8,8 +8,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * 签证官问题
  * 题目表VO
+ *
+ * @author 薛展鹏
  * @TableName t_question
+ * @date 2023/03/29
  */
 @Data
 public class QuestionVO extends Question implements Serializable {

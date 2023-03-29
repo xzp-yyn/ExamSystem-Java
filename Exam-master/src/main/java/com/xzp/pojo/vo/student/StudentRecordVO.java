@@ -12,8 +12,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
+ * 学生记录签证官
  * 学生考试表
+ *
+ * @author 薛展鹏
  * @TableName s_student_exam
+ * @date 2023/03/29
  */
 @TableName(value ="s_student_exam")
 @Data

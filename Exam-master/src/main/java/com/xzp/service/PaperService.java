@@ -10,10 +10,12 @@ import com.xzp.pojo.vo.PaperVO;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【t_paper(试卷表)】的数据库操作Service
-* @createDate 2022-03-28 11:25:29
-*/
+ * 论文服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_paper(试卷表)】的数据库操作Service
+ * @date 2023/03/29
+ */
 public interface PaperService extends IService<Paper> {
 
     void savePaper(SavePaperDTO savePaperDTO);

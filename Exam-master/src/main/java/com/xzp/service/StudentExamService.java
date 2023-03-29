@@ -9,10 +9,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【s_student_exam(学生考试表)】的数据库操作Service
-* @createDate 2022-04-10 17:47:28
-*/
+ * 学生考试服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【s_student_exam(学生考试表)】的数据库操作Service
+ * @date 2023/03/29
+ */
 public interface StudentExamService extends IService<StudentExam> {
     
     Integer createStudentExam(Integer studentId, Integer examId);

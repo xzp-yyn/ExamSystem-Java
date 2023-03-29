@@ -9,9 +9,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/03/20/19:21
+ * 复述,序列化器对象
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 public class ObjectRedisSerializer implements RedisSerializer<Object> {
 

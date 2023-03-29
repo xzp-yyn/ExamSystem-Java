@@ -6,9 +6,11 @@ import com.xzp.other.result.BaseResult;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/09/18/21:45
+ * json响应
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 public class ResponseJson {
 

@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【t_question(题目表)】的数据库操作Service
-* @createDate 2022-03-25 14:03:39
-*/
+ * 问题服务
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_question(题目表)】的数据库操作Service
+ * @date 2023/03/29
+ */
 public interface QuestionService extends IService<Question> {
 
     Page<QuestionVO> getQuestionVOPage(QueryPageQuestionDTO queryPageQuestionDTO);

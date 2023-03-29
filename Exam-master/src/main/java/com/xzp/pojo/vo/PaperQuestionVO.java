@@ -10,9 +10,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @Author: 王鹏
- * @Date: 2022/04/02/16:19
+ * 纸签证官问题
+ *
+ * @author 薛展鹏
  * @Description:
+ * @date 2023/03/29
  */
 @Data
 public class PaperQuestionVO {

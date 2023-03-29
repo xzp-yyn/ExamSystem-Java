@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* @author wangpeng
-* @description 针对表【t_chapter(章节表)】的数据库操作Service实现
-* @createDate 2022-03-21 23:40:10
-*/
+ * 章服务impl
+ *
+ * @author 薛展鹏
+ * @description 针对表【t_chapter(章节表)】的数据库操作Service实现
+ * @date 2023/03/29
+ */
 @Service
 public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
     implements ChapterService{

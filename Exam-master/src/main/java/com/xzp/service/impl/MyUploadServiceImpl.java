@@ -19,8 +19,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 我上传服务impl
+ *
+ * @author 薛展鹏
  * @Date: 2022/05/04/22:23
  * @Description:
+ * @date 2023/03/29
  */
 @Service
 public class MyUploadServiceImpl implements MyUploadService {
