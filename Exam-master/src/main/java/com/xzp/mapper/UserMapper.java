@@ -1,7 +1,7 @@
 package com.xzp.mapper;
 
-import com.xzp.pojo.po.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xzp.pojo.po.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

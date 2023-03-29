@@ -1,7 +1,7 @@
 package com.xzp.mapper;
 
-import com.xzp.pojo.po.StudentExam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xzp.pojo.po.StudentExam;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

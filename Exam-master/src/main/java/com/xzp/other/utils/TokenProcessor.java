@@ -3,10 +3,10 @@ package com.xzp.other.utils;
  * 生成Token的工具类：  
  */
 
-import java.util.Base64.Encoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Random;
 
 /**

@@ -1,13 +1,12 @@
 package com.xzp.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xzp.pojo.enums.TypeEnum;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 题目表

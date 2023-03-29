@@ -1,14 +1,14 @@
 package com.xzp.mapper;
-import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-import com.xzp.pojo.enums.TypeEnum;
-
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xzp.pojo.po.Question;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xzp.pojo.enums.TypeEnum;
+import com.xzp.pojo.po.Question;
 import com.xzp.pojo.vo.QuestionVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**

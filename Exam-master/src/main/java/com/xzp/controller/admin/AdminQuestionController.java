@@ -1,16 +1,16 @@
 package com.xzp.controller.admin;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xzp.other.result.BaseResult;
+import com.xzp.other.result.PageResult;
 import com.xzp.pojo.dto.GetRandomQuestionDTO;
 import com.xzp.pojo.dto.QueryPageQuestionDTO;
 import com.xzp.pojo.dto.QueryQuestionDTO;
 import com.xzp.pojo.dto.SaveQuestionDTO;
 import com.xzp.pojo.po.Question;
-import com.xzp.other.result.BaseResult;
-import com.xzp.other.result.PageResult;
+import com.xzp.pojo.vo.QuestionVO;
 import com.xzp.service.OptionService;
 import com.xzp.service.QuestionService;
-import com.xzp.pojo.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,16 +23,17 @@ import java.util.List;
  *
  * @author 薛展鹏
  * @date 2023/03/21
- */
+ la
+ **/
 @RestController
 @RequestMapping("/admin/question")
 public class AdminQuestionController {
 
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @Autowired
-    OptionService optionService;
+    private OptionService optionService;
 
     /**
      * 获取数量

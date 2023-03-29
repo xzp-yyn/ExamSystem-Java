@@ -1,13 +1,13 @@
 package com.xzp.pojo.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 
 /**
  * 纸签证官

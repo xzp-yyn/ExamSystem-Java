@@ -1,8 +1,8 @@
 package com.xzp.controller.student;
 
 import com.xzp.controller.admin.AdminRecordController;
-import com.xzp.pojo.dto.QueryPageRecordDTO;
 import com.xzp.other.result.BaseResult;
+import com.xzp.pojo.dto.QueryPageRecordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
