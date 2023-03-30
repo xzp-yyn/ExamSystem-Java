@@ -17,4 +17,6 @@ public interface ExamService extends IService<Exam> {
     Page<Exam> getPage(QueryPageExamDTO queryPageExamDTO);
 
     void deleteExam(Exam exam);
+
+    String getNameByID(Integer id);
 }

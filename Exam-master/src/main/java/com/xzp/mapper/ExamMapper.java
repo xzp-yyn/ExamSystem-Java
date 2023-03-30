@@ -2,6 +2,7 @@ package com.xzp.mapper;
 
 import com.xzp.pojo.po.Exam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -13,6 +14,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ExamMapper extends BaseMapper<Exam> {
+
+    String getNameByID(@Param("id") Integer id);
+
+
 
 }
 

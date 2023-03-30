@@ -56,5 +56,28 @@ export function stuHeadData (token) {
     method: "get"
   })
 }
-
+// stuExamCount
+// 考试正确题目排行榜
+export function stuExamCount (token) {
+  return request({
+    url: "/data/stuExamCount/" + token,
+    method: "get"
+  })
+}
+//
+// 考试信息轮播图
+export function examRanking () {
+  return request({
+    url: "/data/examRanking",
+    method: "get"
+  })
+}
+// getMyExamCount
+// 考试信息轮播图
+export function getMyExamCount (token) {
+  return request({
+    url: "/data/getMyExamCount/" + token,
+    method: "get"
+  })
+}
 

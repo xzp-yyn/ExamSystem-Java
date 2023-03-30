@@ -26,6 +26,8 @@ public interface StudentExamMapper extends BaseMapper<StudentExam> {
 
     StudentExam perStuExamData(@Param("id") Integer id);
 
+    Integer getExamSum(@Param("id") Integer id);
+
 
 
 }

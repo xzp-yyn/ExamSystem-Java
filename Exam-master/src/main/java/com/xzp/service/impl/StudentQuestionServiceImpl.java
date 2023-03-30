@@ -2,6 +2,7 @@ package com.xzp.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzp.pojo.po.StudentQuestion;
+import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
 import com.xzp.service.StudentQuestionService;
 import com.xzp.mapper.StudentQuestionMapper;
@@ -30,6 +31,11 @@ public class StudentQuestionServiceImpl extends ServiceImpl<StudentQuestionMappe
     @Override
     public List<StudentQuestion> getquestionCount() {
         return baseMapper.getquestionCount();
+    }
+
+    @Override
+    public List<StudentExamRightCount> getstuRightCount(Integer id) {
+        return baseMapper.getstuRightCount(id);
     }
 }
 

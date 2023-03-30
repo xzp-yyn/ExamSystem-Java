@@ -20,5 +20,11 @@
         total_score,qualify_score,
         create_time,update_time
     </sql>
+    <select id="getExamRanking" resultType="com.xzp.pojo.vo.ExamRankingVO">
+        select end_time,name,question_count,qualify_score from
+        (select question_count,qualify_score,id
+        from t_paper where id in (select paper_id from t_exam)) a join
+        (select name,end_time,paper_id from t_exam ) b on id=b.paper_id;
+    </select>
 
 </mapper>

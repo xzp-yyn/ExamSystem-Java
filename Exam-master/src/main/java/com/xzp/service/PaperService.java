@@ -3,6 +3,7 @@ package com.xzp.service;
 import com.xzp.pojo.dto.SavePaperDTO;
 import com.xzp.pojo.po.Paper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xzp.pojo.vo.ExamRankingVO;
 import com.xzp.pojo.vo.PaperInfoVO;
 import com.xzp.pojo.vo.PaperQuestionVO;
 import com.xzp.pojo.vo.PaperVO;
@@ -26,4 +27,6 @@ public interface PaperService extends IService<Paper> {
     PaperInfoVO getPaper(Integer paperId);
 
     void removePaper(Paper paper);
+
+    List<ExamRankingVO> getExamRanking();
 }

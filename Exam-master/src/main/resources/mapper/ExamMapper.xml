@@ -26,4 +26,8 @@
         privilege,password,create_time,
         update_time
     </sql>
+    <select id="getNameByID" resultType="java.lang.String">
+            select name from t_exam where id =#{id}
+    </select>
+
 </mapper>

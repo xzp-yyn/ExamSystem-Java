@@ -45,4 +45,6 @@ public interface StudentExamService extends IService<StudentExam> {
 
     StudentExam getStuExamDataById(Integer id);
 
+    Integer getMyExamSum(Integer id);
+
 }

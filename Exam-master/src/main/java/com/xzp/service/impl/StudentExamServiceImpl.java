@@ -55,6 +55,12 @@ public class StudentExamServiceImpl extends ServiceImpl<StudentExamMapper, Stude
     public StudentExam getStuExamDataById(Integer id){
         return baseMapper.perStuExamData(id);
     }
+
+    @Override
+    public Integer getMyExamSum(Integer id) {
+        return baseMapper.getExamSum(id);
+    }
+
     @Override
     @Transactional
     public Integer createStudentExam(Integer studentId, Integer examId) throws RuntimeException {

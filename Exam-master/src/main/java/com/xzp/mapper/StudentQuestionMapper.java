@@ -2,7 +2,9 @@ package com.xzp.mapper;
 
 import com.xzp.pojo.po.StudentQuestion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +22,8 @@ public interface StudentQuestionMapper extends BaseMapper<StudentQuestion> {
     List<StudentQuestionVO> getQuesPercen();
 
     List<StudentQuestion> getquestionCount();
+
+    List<StudentExamRightCount> getstuRightCount(@Param("id") Integer id);
 
 }
 

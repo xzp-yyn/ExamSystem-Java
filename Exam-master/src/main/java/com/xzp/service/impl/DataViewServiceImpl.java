@@ -7,12 +7,15 @@ import com.xzp.pojo.po.Question;
 import com.xzp.pojo.po.StudentExam;
 import com.xzp.pojo.po.StudentQuestion;
 import com.xzp.pojo.po.User;
+import com.xzp.pojo.vo.ExamRankingVO;
+import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
 import com.xzp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -93,6 +96,49 @@ public class DataViewServiceImpl implements DataViewService {
     public long examCount() {
         long count = examService.count();
         return count;
+    }
+
+    @Override
+    public List<Integer> getMyExamCount(Integer id) {
+        Integer examSum = studentExamService.getMyExamSum(id);
+        ArrayList<Integer> integers = new ArrayList<>();
+        Integer count = Math.toIntExact(examService.count());
+        DecimalFormat format = new DecimalFormat("###.00%");
+        String s = format.format(examSum.doubleValue() / count.doubleValue());
+        Integer percentage=Integer.valueOf(s.substring(0,s.indexOf('.')));
+        integers.add(percentage);
+        integers.add(percentage);
+        return integers;
+    }
+
+    @Override
+    public List<List<String>> getStuExamRanking() {
+        List<List<String>> objects = new ArrayList<>();
+        List<ExamRankingVO> examRanking = paperService.getExamRanking();
+        examRanking.stream().forEach(e->{
+            ArrayList<String> data = new ArrayList<>();
+            data.add(DateUtil.format(e.getEndTime(),"yyyy-MM-dd HH:mm:ss"));
+            data.add(e.getName());
+            data.add(e.getQuestionCount().toString());
+            data.add(e.getQualifyScore().toString());
+            objects.add(data);
+        });
+        return objects;
+    }
+
+    @Override
+    public List<Map<String,Object>> getStuExamCount(Integer id){
+        ArrayList<Map<String,Object>> objects = new ArrayList<>();
+        List<StudentExamRightCount> rightCounts = studentQuestionService.getstuRightCount(id);
+        rightCounts.stream().forEach(e->{
+            HashMap<String, Object> hashMap = new HashMap<>();
+            String name = examService.getNameByID(studentExamService.getById(e.getStudentExamId()).getExamId());
+            hashMap.put("name",name);
+            hashMap.put("value",e.getSum());
+            objects.add(hashMap);
+        });
+
+        return objects;
     }
 
 

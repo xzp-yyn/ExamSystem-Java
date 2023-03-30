@@ -57,4 +57,9 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam>
         }
         baseMapper.deleteById(exam);
     }
+
+    @Override
+    public String getNameByID(Integer id) {
+        return baseMapper.getNameByID(id);
+    }
 }

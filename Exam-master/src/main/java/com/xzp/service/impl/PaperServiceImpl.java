@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzp.pojo.dto.SavePaperDTO;
 import com.xzp.mapper.*;
 import com.xzp.pojo.po.*;
+import com.xzp.pojo.vo.ExamRankingVO;
 import com.xzp.service.PaperService;
 import com.xzp.pojo.vo.PaperInfoVO;
 import com.xzp.pojo.vo.PaperQuestionVO;
@@ -185,4 +186,8 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper>
         baseMapper.deleteById(paper);
     }
 
+    @Override
+    public List<ExamRankingVO> getExamRanking() {
+        return baseMapper.getExamRanking();
+    }
 }

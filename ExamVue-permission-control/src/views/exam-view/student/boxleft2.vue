@@ -5,6 +5,8 @@
   </div>
 </template>
 <script>
+import { stuExamCount } from '@/api/data/dataview'
+import { getToken } from '@/utils/auth'
 export default {
   name: 'Boxleft',
   name: 'RankingBoard',
@@ -51,6 +53,19 @@ export default {
         ],
       },
     }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    init() {
+      var token = getToken()
+      stuExamCount(token).then((res) => {
+        this.config = {
+          data: res.data,
+        }
+      })
+    },
   },
 }
 </script>

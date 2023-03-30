@@ -31,4 +31,8 @@
         select student_exam_id, count(*) as counts from s_student_question where student_exam_id in
                                                         (select id from s_student_exam where is_finished=true group by id) group by student_exam_id;
     </select>
+    <select id="getstuRightCount" resultType="com.xzp.pojo.vo.student.StudentExamRightCount">
+        select student_exam_id as student_exam_id, count(*) as sum  from s_student_question where student_exam_id in (select s_student_exam.id from s_student_exam where student_id=#{id})
+        and is_right=true group by student_exam_id;
+    </select>
 </mapper>

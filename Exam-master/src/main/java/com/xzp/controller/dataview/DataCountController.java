@@ -6,6 +6,7 @@ import com.xzp.other.result.BaseResult;
 import com.xzp.pojo.po.User;
 import com.xzp.service.DataViewService;
 import com.xzp.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,4 +82,22 @@ public class DataCountController {
         User user = userService.redisGetUser(token);
         return BaseResult.successData(dataViewService.getStuExamDataById(user.getId()));
     }
+
+    @GetMapping("/stuExamCount/{token}")
+    public BaseResult stuExamCount(@PathVariable String token){
+        Integer id = userService.redisGetUser(token).getId();
+        return BaseResult.successData(dataViewService.getStuExamCount(id));
+    }
+
+    @GetMapping("/examRanking")
+    public BaseResult getStuExamRanking(){
+        return BaseResult.successData(dataViewService.getStuExamRanking());
+    }
+
+    @GetMapping("/getMyExamCount/{token}")
+    public BaseResult getMyExamCount(@PathVariable String token){
+        Integer id = userService.redisGetUser(token).getId();
+        return BaseResult.successData(dataViewService.getMyExamCount(id));
+    }
+
 }

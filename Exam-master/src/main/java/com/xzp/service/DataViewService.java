@@ -1,6 +1,7 @@
 package com.xzp.service;
 
 import com.xzp.pojo.po.StudentExam;
+import com.xzp.pojo.vo.ExamRankingVO;
 
 import java.util.List;
 import java.util.Map;
@@ -39,4 +40,11 @@ public interface DataViewService {
     List<Map<String,Object>> perstuQualify();
 
     Map<String,Object> getStuExamDataById(Integer id);
+
+    List<Map<String,Object>> getStuExamCount(Integer id);
+
+    List<List<String>> getStuExamRanking();
+
+    List<Integer> getMyExamCount(Integer id);
+
 }

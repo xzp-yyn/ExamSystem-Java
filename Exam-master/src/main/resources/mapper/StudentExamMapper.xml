@@ -41,5 +41,9 @@
         (select  count(*) as sum from s_student_exam where student_id=#{id}) b join
         (select finish_time from s_student_exam where student_id=#{id} limit 1) c
     </select>
+    <select id="getExamSum" resultType="java.lang.Integer">
+        select count(*) as sum from s_student_exam where is_finished=true and student_id=#{id}
+
+    </select>
 
 </mapper>
