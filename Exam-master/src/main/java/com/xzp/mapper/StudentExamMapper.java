@@ -2,9 +2,11 @@ package com.xzp.mapper;
 
 import com.xzp.pojo.po.StudentExam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,6 +23,9 @@ public interface StudentExamMapper extends BaseMapper<StudentExam> {
     StudentExam getPassPercentageData();
 
     List<StudentExam> perstuQualify();
+
+    StudentExam perStuExamData(@Param("id") Integer id);
+
 
 
 }

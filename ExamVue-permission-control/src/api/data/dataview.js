@@ -48,4 +48,13 @@ export function perstuPercentage () {
     method: "get"
   })
 }
+// stuHeadData
+// 学生的统计
+export function stuHeadData (token) {
+  return request({
+    url: "/data/stuexamdata/" + token,
+    method: "get"
+  })
+}
+
 

@@ -1,5 +1,8 @@
 package com.xzp.service.impl;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.xzp.pojo.po.Question;
 import com.xzp.pojo.po.StudentExam;
 import com.xzp.pojo.po.StudentQuestion;
@@ -90,6 +93,34 @@ public class DataViewServiceImpl implements DataViewService {
     public long examCount() {
         long count = examService.count();
         return count;
+    }
+
+
+    @Override
+    public Map<String, Object> getStuExamDataById(Integer id) {
+        StudentExam studentExam = studentExamService.getStuExamDataById(id);
+        ConcurrentHashMap<String, Object> hashMap = new ConcurrentHashMap<>();
+        if(ObjectUtil.isNotNull(studentExam)){
+            hashMap.put("viewcount",this.viewCount());
+            String start="2023-01-13 24:00:00";
+            Date dateTime = DateUtil.parse(start);
+            Date end = DateUtil.date();
+            long l = DateUtil.between(dateTime, end, DateUnit.HOUR);
+            hashMap.put("runtime",l);
+            hashMap.put("onlineperson",this.onlinePerson());
+            hashMap.put("myexamcount",studentExam.getSum());
+            hashMap.put("passcount",studentExam.getQualify());
+            ArrayList<Integer> integers = new ArrayList<>();
+            Date time = studentExam.getFinishTime();
+            String format = DateUtil.format(time, "yyyy-MM-dd");
+            Integer year= Integer.valueOf(format.substring(0,format.indexOf('-')));
+            Integer month=Integer.valueOf(format.substring(format.indexOf('-')+1,format.lastIndexOf('-')));
+            Integer day=Integer.valueOf(format.substring(format.lastIndexOf('-')+1,format.length()));
+            integers.add(year);integers.add(month);integers.add(day);
+            hashMap.put("lasttime",integers);
+            hashMap.put("examcount",this.examCount());
+        }
+        return hashMap;
     }
 
     @Override

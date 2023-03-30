@@ -249,11 +249,11 @@ export const asyncRoutes = [
       {
         path: 'index',
         name: 'index',
-        component: () => import('@/views/exam-view/index'),
+        component: () => import('@/views/exam-view/student/demo2'),
         meta: {
           title: '考试数据可视化',
           icon: 'view1',
-          roles: ['admin', 'student'],
+          roles: ['student'],
           noCache: true
         }
       },

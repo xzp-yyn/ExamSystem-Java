@@ -43,4 +43,6 @@ public interface StudentExamService extends IService<StudentExam> {
 
     List<StudentExam> perstuQualify();
 
+    StudentExam getStuExamDataById(Integer id);
+
 }

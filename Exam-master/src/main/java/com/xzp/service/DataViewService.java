@@ -38,5 +38,5 @@ public interface DataViewService {
 
     List<Map<String,Object>> perstuQualify();
 
-
+    Map<String,Object> getStuExamDataById(Integer id);
 }

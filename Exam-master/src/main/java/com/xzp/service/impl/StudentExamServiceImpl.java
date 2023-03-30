@@ -50,6 +50,11 @@ public class StudentExamServiceImpl extends ServiceImpl<StudentExamMapper, Stude
     @Autowired
     StudentOptionMapper studentOptionMapper;
 
+
+    @Override
+    public StudentExam getStuExamDataById(Integer id){
+        return baseMapper.perStuExamData(id);
+    }
     @Override
     @Transactional
     public Integer createStudentExam(Integer studentId, Integer examId) throws RuntimeException {

@@ -3,9 +3,12 @@ package com.xzp.controller.dataview;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import com.xzp.other.result.BaseResult;
+import com.xzp.pojo.po.User;
 import com.xzp.service.DataViewService;
+import com.xzp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +29,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DataCountController {
     @Autowired
     private DataViewService dataViewService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/commonview")
     public BaseResult getviewResylt(){
@@ -68,5 +74,11 @@ public class DataCountController {
     @GetMapping("/perstuPercentage")
     public BaseResult perstuPercentage(){
         return BaseResult.successData(dataViewService.perstuQualify());
+    }
+
+    @GetMapping("/stuexamdata/{token}")
+    public BaseResult stuExamData(@PathVariable String token){
+        User user = userService.redisGetUser(token);
+        return BaseResult.successData(dataViewService.getStuExamDataById(user.getId()));
     }
 }

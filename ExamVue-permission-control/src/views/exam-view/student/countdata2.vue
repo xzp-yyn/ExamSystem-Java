@@ -75,7 +75,7 @@ export default {
           {
             title: '我的考试次数',
             number: {
-              number: [res.data.myexamCount],
+              number: [res.data.myexamcount],
               content: '{nt}',
               textAlign: 'right',
               style: {
@@ -101,7 +101,7 @@ export default {
           {
             title: '最近一次考试',
             number: {
-              number: res.data.lastTime,
+              number: res.data.lasttime,
               content: '{nt}.{nt}.{nt}',
               textAlign: 'center',
               style: {
