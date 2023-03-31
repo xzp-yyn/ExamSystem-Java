@@ -3,6 +3,8 @@ package com.xzp.other.utils;
  * 生成Token的工具类：  
  */
 
+import cn.hutool.core.codec.Base62;
+
 import java.util.Base64.Encoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -31,15 +33,10 @@ public class TokenProcessor {
      */
     public String makeToken() {
         String token = (System.currentTimeMillis() + new Random().nextInt(999999999)) + "";
-        try {
-            MessageDigest md = MessageDigest.getInstance("md5");
-            byte[] md5 =  md.digest(token.getBytes());
-            Encoder encoder = Base64.getEncoder();
-            return new String(encoder.encode(md5));
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block  
-            e.printStackTrace();
-        }
-        return null;
+        //            MessageDigest md = MessageDigest.getInstance("md5");
+//            byte[] md5 =  md.digest(token.getBytes());
+//            Encoder encoder = Base64.getEncoder();
+//            return new String(encoder.encode(md5));
+        return Base62.encode(token);
     }
 }

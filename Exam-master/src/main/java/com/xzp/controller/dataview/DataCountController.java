@@ -78,13 +78,13 @@ public class DataCountController {
     }
 
     @GetMapping("/stuexamdata/{token}")
-    public BaseResult stuExamData(@PathVariable String token){
+    public BaseResult stuExamData(@PathVariable("token") String token){
         User user = userService.redisGetUser(token);
         return BaseResult.successData(dataViewService.getStuExamDataById(user.getId()));
     }
 
     @GetMapping("/stuExamCount/{token}")
-    public BaseResult stuExamCount(@PathVariable String token){
+    public BaseResult stuExamCount(@PathVariable("token") String token){
         Integer id = userService.redisGetUser(token).getId();
         return BaseResult.successData(dataViewService.getStuExamCount(id));
     }
@@ -95,9 +95,15 @@ public class DataCountController {
     }
 
     @GetMapping("/getMyExamCount/{token}")
-    public BaseResult getMyExamCount(@PathVariable String token){
+    public BaseResult getMyExamCount(@PathVariable("token") String token){
         Integer id = userService.redisGetUser(token).getId();
         return BaseResult.successData(dataViewService.getMyExamCount(id));
+    }
+    @GetMapping("/wrongCount/{token}")
+    public BaseResult getwrongCount(@PathVariable String token){
+        Integer id = userService.redisGetUser(token).getId();
+        return BaseResult.successData( dataViewService.getWrongCount(id));
+
     }
 
 }

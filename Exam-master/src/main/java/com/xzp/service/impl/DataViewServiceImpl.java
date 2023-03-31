@@ -10,6 +10,7 @@ import com.xzp.pojo.po.User;
 import com.xzp.pojo.vo.ExamRankingVO;
 import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
+import com.xzp.pojo.vo.student.WrongCountVO;
 import com.xzp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -109,6 +110,25 @@ public class DataViewServiceImpl implements DataViewService {
         integers.add(percentage);
         integers.add(percentage);
         return integers;
+    }
+
+    @Override
+    public Map<String, Object> getWrongCount(Integer id) {
+        List<WrongCountVO> countVOS = studentQuestionService.getstuWrongCount(id);
+        ArrayList<String> strings = new ArrayList<>();
+        ArrayList<Map<String, Object>> seriesdata = new ArrayList<>();
+        countVOS.stream().forEach(e->{
+            ConcurrentHashMap<String, Object> seriesmap = new ConcurrentHashMap<>();
+            String name = examService.getNameByID(studentExamService.getById(e.getStudentExamId()).getExamId());
+            strings.add(name);
+            seriesmap.put("name",name);
+            seriesmap.put("value",e.getNotQualify());
+            seriesdata.add(seriesmap);
+        });
+        ConcurrentHashMap<String, Object> stringObjectConcurrentHashMap = new ConcurrentHashMap<>();
+        stringObjectConcurrentHashMap.put("legenddata",strings);
+        stringObjectConcurrentHashMap.put("seriesdata",seriesdata);
+        return stringObjectConcurrentHashMap;
     }
 
     @Override

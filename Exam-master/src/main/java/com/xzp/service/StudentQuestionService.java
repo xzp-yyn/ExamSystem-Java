@@ -4,6 +4,7 @@ import com.xzp.pojo.po.StudentQuestion;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
+import com.xzp.pojo.vo.student.WrongCountVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public interface StudentQuestionService extends IService<StudentQuestion> {
     List<StudentQuestion> getquestionCount();
 
     List<StudentExamRightCount> getstuRightCount(Integer id);
+
+    List<WrongCountVO> getstuWrongCount(Integer id);
+
 
 
 }

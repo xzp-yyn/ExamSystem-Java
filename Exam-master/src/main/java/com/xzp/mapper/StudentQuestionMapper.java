@@ -2,6 +2,7 @@ package com.xzp.mapper;
 
 import com.xzp.pojo.po.StudentQuestion;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xzp.pojo.vo.student.WrongCountVO;
 import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +25,8 @@ public interface StudentQuestionMapper extends BaseMapper<StudentQuestion> {
     List<StudentQuestion> getquestionCount();
 
     List<StudentExamRightCount> getstuRightCount(@Param("id") Integer id);
+
+    List<WrongCountVO> getstuWrongCount(@Param("id")Integer id);
 
 }
 

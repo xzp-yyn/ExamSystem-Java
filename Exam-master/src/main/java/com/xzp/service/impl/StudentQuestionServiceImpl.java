@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzp.pojo.po.StudentQuestion;
 import com.xzp.pojo.vo.student.StudentExamRightCount;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
+import com.xzp.pojo.vo.student.WrongCountVO;
 import com.xzp.service.StudentQuestionService;
 import com.xzp.mapper.StudentQuestionMapper;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class StudentQuestionServiceImpl extends ServiceImpl<StudentQuestionMappe
     @Override
     public List<StudentExamRightCount> getstuRightCount(Integer id) {
         return baseMapper.getstuRightCount(id);
+    }
+
+    @Override
+    public List<WrongCountVO> getstuWrongCount(Integer id) {
+        return baseMapper.getstuWrongCount(id);
     }
 }
 

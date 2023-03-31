@@ -80,4 +80,13 @@ export function getMyExamCount (token) {
     method: "get"
   })
 }
+// wrongCount
+// 错题占比
+export function wrongCount (token) {
+  return request({
+    url: "/data/wrongCount/" + token,
+    method: "get"
+  })
+}
+
 

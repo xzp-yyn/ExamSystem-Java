@@ -35,4 +35,8 @@
         select student_exam_id as student_exam_id, count(*) as sum  from s_student_question where student_exam_id in (select s_student_exam.id from s_student_exam where student_id=#{id})
         and is_right=true group by student_exam_id;
     </select>
+    <select id="getstuWrongCount" resultType="com.xzp.pojo.vo.student.WrongCountVO">
+        select student_exam_id, count(*) as not_qualify  from s_student_question where student_exam_id in (
+        select id from s_student_exam where student_id=#{id}) and is_right=false group by student_exam_id ;
+    </select>
 </mapper>

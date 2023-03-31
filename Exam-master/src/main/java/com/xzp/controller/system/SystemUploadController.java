@@ -37,7 +37,7 @@ public class SystemUploadController {
     @ResponseBody
     public BaseResult uploadImage(HttpServletRequest req){
         // 上传到oss
-        String resPath = myUploadService.uploadOSS(req, "pictures").get("resPath");
+        String resPath = myUploadService.uploadLocal(req, "pictures").get("resPath");
         if (resPath != null && resPath.length() != 0) {
             return BaseResult.successMsgAndData("上传图片成功", resPath);
         } else {
