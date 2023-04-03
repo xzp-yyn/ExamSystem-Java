@@ -1,6 +1,8 @@
 # 考试可视化系统
 （Online examination system, Created by SpringBoot framework）
-
+<img src="https://img.shields.io/badge/Author-xzp-red" alt="author" />&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/license-Apache--2.0-brightgreen" alt="license" />&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/release-v1.0.0-success" alt="release" />  
 ## 项目介绍
 
 在线考试系统后端使用SpringBoot+Mybatis+Redis，前端使用Vue+ElementUI+DataV，数据库使用MySQL。
