@@ -31,7 +31,7 @@
 
 登录界面
 
-![1](![输入图片说明](imgs/login.png))
+![1](![输入图片说明](https://gitee.com/xue-zhanpeng/exam_data_visualization/blob/V1/imgs/login.png))
 
 题目管理
 
