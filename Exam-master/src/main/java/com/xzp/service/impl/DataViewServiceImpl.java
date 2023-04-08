@@ -148,17 +148,18 @@ public class DataViewServiceImpl implements DataViewService {
 
     @Override
     public List<Map<String,Object>> getStuExamCount(Integer id){
-        ArrayList<Map<String,Object>> objects = new ArrayList<>();
+        ArrayList<Map<String, Object>> objects = new ArrayList<>();
         List<StudentExamRightCount> rightCounts = studentQuestionService.getstuRightCount(id);
-        rightCounts.stream().forEach(e->{
-            HashMap<String, Object> hashMap = new HashMap<>();
-            String name = examService.getNameByID(studentExamService.getById(e.getStudentExamId()).getExamId());
-            hashMap.put("name",name);
-            hashMap.put("value",e.getSum());
-            objects.add(hashMap);
-        });
 
-        return objects;
+            rightCounts.stream().forEach(e -> {
+                HashMap<String, Object> hashMap = new HashMap<>();
+                String name = examService.getNameByID(studentExamService.getById(e.getStudentExamId()).getExamId());
+                hashMap.put("name", name);
+                hashMap.put("value", e.getSum());
+                objects.add(hashMap);
+            });
+
+            return objects;
     }
 
 

@@ -1,5 +1,19 @@
 <template>
+
   <div id="ranking-board">
+    <el-dropdown @command="handleCommand"
+                 split-button
+                 type="success"
+                 class="dropdown">
+      <span class="el-dropdown-link">
+        {{ first }}
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <template v-for="item in menu">
+          <el-dropdown-item :command=item>{{ item }}</el-dropdown-item>
+        </template>
+      </el-dropdown-menu>
+    </el-dropdown>
     <div class="ranking-board-title">考试正确数量</div>
     <dv-scroll-ranking-board :config="config" />
   </div>
@@ -12,7 +26,13 @@ export default {
   name: 'RankingBoard',
   data() {
     return {
+      loading: false,
+      menu: [],
+      first: '',
       config: {
+        data: [],
+      },
+      config1: {
         data: [
           {
             name: '日常养护',
@@ -61,8 +81,26 @@ export default {
     init() {
       var token = getToken()
       stuExamCount(token).then((res) => {
+        this.first = res.data[0].name
         this.config = {
           data: res.data,
+        }
+        this.config1 = {
+          data: res.data,
+        }
+        res.data.forEach((item) => {
+          this.menu.push(item.name)
+        })
+      })
+    },
+
+    handleCommand(command) {
+      this.first = command
+      this.config1.data.forEach((e) => {
+        if (e.name == this.first) {
+          this.config = {
+            data: [e],
+          }
         }
       })
     },
@@ -70,6 +108,10 @@ export default {
 }
 </script>
 <style scoped>
+.dropdown {
+  margin: auto;
+  margin-top: 4%;
+}
 #ranking-board {
   width: 20%;
   height: 85%;

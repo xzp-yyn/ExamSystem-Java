@@ -22,6 +22,7 @@
       <countdata></countdata>
       <dv-loading v-if="loading"
                   style="">Loading....</dv-loading>
+
       <div class="main-content"
            v-if="loading ? false:true">
 
