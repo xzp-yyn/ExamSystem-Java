@@ -10,11 +10,13 @@ import com.xzp.service.ChapterService;
 import com.xzp.mapper.ChapterMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 章服务impl
@@ -28,10 +30,17 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
     implements ChapterService{
 
     @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+
+    @Autowired
     private QuestionMapper questionMapper;
 
     @Override
     public List<ChapterVO> getChapterVOS(Integer repoId) {
+        if(redisTemplate.hasKey("getChapterVOS")){
+            return (List<ChapterVO>) redisTemplate.opsForValue().get("getChapterVOS");
+        }
+
         // 题库id相等
         QueryWrapper<Chapter> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(repoId != null, "repo_id", repoId);
@@ -53,6 +62,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
             // 添加列表
             voList.add(chapterVO);
         }
+        redisTemplate.opsForValue().setIfAbsent("getChapterVOS",voList,10, TimeUnit.MINUTES);
         return voList;
     }
 

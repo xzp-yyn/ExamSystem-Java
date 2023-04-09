@@ -28,7 +28,7 @@ public interface StudentExamMapper extends BaseMapper<StudentExam> {
 
     Integer getExamSum(@Param("id") Integer id);
 
-
+    StudentExam getPassnumByName(@Param("name")String name);
 
 }
 

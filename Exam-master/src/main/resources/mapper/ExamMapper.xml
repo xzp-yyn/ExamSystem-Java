@@ -29,5 +29,8 @@
     <select id="getNameByID" resultType="java.lang.String">
             select name from t_exam where id =#{id}
     </select>
+    <select id="getallName" resultType="java.lang.String">
+        select name from t_exam
+    </select>
 
 </mapper>

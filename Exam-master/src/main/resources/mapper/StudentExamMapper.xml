@@ -45,5 +45,10 @@
         select count(*) as sum from s_student_exam where is_finished=true and student_id=#{id}
 
     </select>
+    <select id="getPassnumByName" resultType="com.xzp.pojo.po.StudentExam">
+        select * from (
+select count(*) as qualify from s_student_exam where exam_id =(select id from t_exam where name like  "%"#{name}"%") and is_qualify=true and is_checked=true) a join
+    (select count(*) as sum from s_student_exam where exam_id=(select id from t_exam where name like "%"#{name}"%") and is_checked=true) b
+    </select>
 
 </mapper>

@@ -89,4 +89,21 @@ export function wrongCount (token) {
   })
 }
 
+// examNames
+export function examNames () {
+  return request({
+    url: "/data/examNames",
+    method: "get"
+  })
+}
+
+// examPassPercen/{name}
+export function examPassPercen (name) {
+  return request({
+    url: "/data/examPassPercen/" + name,
+    method: "get"
+  })
+}
+
+
 

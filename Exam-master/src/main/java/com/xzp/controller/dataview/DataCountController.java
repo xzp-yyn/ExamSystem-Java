@@ -2,6 +2,7 @@ package com.xzp.controller.dataview;
 
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import com.xzp.mapper.ExamMapper;
 import com.xzp.other.result.BaseResult;
 import com.xzp.pojo.po.User;
 import com.xzp.service.DataViewService;
@@ -33,6 +34,9 @@ public class DataCountController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ExamMapper examMapper;
 
     @GetMapping("/commonview")
     public BaseResult getviewResylt(){
@@ -103,7 +107,16 @@ public class DataCountController {
     public BaseResult getwrongCount(@PathVariable String token){
         Integer id = userService.redisGetUser(token).getId();
         return BaseResult.successData( dataViewService.getWrongCount(id));
+    }
 
+    @GetMapping("/examNames")
+    public BaseResult examNames(){
+        List<String> strings = examMapper.getallName();
+        return BaseResult.successData(strings);
+    }
+    @GetMapping("/examPassPercen/{name}")
+    public BaseResult examPassPercen(@PathVariable String name){
+        return BaseResult.successData( dataViewService.examPassPercen(name));
     }
 
 }

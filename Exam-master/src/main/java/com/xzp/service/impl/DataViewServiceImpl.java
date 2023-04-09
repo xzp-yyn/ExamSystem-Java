@@ -15,12 +15,11 @@ import com.xzp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * 时间未到，资格未够，继续努力！
@@ -113,7 +112,22 @@ public class DataViewServiceImpl implements DataViewService {
     }
 
     @Override
+    public Integer examPassPercen(String name) {
+        StudentExam studentExam = studentExamService.getPassnumByName(name);
+        DecimalFormat format = new DecimalFormat("###.00%");
+        if(studentExam.getQualify()==0){
+            return 0;
+        }
+        String s = format.format(studentExam.getQualify().doubleValue() / studentExam.getSum().doubleValue());
+        Integer per = Integer.valueOf(s.substring(0,s.indexOf(".")));
+        return per;
+    }
+
+    @Override
     public Map<String, Object> getWrongCount(Integer id) {
+       if(redisTemplate.hasKey("getWrongCount")){
+           return (Map<String, Object>) redisTemplate.opsForValue().get("getWrongCount");
+       }
         List<WrongCountVO> countVOS = studentQuestionService.getstuWrongCount(id);
         ArrayList<String> strings = new ArrayList<>();
         ArrayList<Map<String, Object>> seriesdata = new ArrayList<>();
@@ -128,11 +142,15 @@ public class DataViewServiceImpl implements DataViewService {
         ConcurrentHashMap<String, Object> stringObjectConcurrentHashMap = new ConcurrentHashMap<>();
         stringObjectConcurrentHashMap.put("legenddata",strings);
         stringObjectConcurrentHashMap.put("seriesdata",seriesdata);
+        redisTemplate.opsForValue().setIfAbsent("getWrongCount",stringObjectConcurrentHashMap,10, TimeUnit.MINUTES);
         return stringObjectConcurrentHashMap;
     }
 
     @Override
     public List<List<String>> getStuExamRanking() {
+        if(redisTemplate.hasKey("getStuExamRanking")){
+            return (List<List<String>>) redisTemplate.opsForValue().get("getStuExamRanking");
+        }
         List<List<String>> objects = new ArrayList<>();
         List<ExamRankingVO> examRanking = paperService.getExamRanking();
         examRanking.stream().forEach(e->{
@@ -143,14 +161,17 @@ public class DataViewServiceImpl implements DataViewService {
             data.add(e.getQualifyScore().toString());
             objects.add(data);
         });
+        redisTemplate.opsForValue().setIfAbsent("getStuExamRanking",objects,20,TimeUnit.MINUTES);
         return objects;
     }
 
     @Override
     public List<Map<String,Object>> getStuExamCount(Integer id){
+        if(redisTemplate.hasKey("getStuExamCount")){
+            return (List<Map<String, Object>>) redisTemplate.opsForValue().get("getStuExamCount");
+        }
         ArrayList<Map<String, Object>> objects = new ArrayList<>();
         List<StudentExamRightCount> rightCounts = studentQuestionService.getstuRightCount(id);
-
             rightCounts.stream().forEach(e -> {
                 HashMap<String, Object> hashMap = new HashMap<>();
                 String name = examService.getNameByID(studentExamService.getById(e.getStudentExamId()).getExamId());
@@ -158,13 +179,16 @@ public class DataViewServiceImpl implements DataViewService {
                 hashMap.put("value", e.getSum());
                 objects.add(hashMap);
             });
-
+        redisTemplate.opsForValue().setIfAbsent("getStuExamCount",objects,20,TimeUnit.MINUTES);
             return objects;
     }
 
 
     @Override
     public Map<String, Object> getStuExamDataById(Integer id) {
+        if(redisTemplate.hasKey("getStuExamDataById")){
+            return (Map<String, Object>) redisTemplate.opsForValue().get("getStuExamDataById");
+        }
         StudentExam studentExam = studentExamService.getStuExamDataById(id);
         ConcurrentHashMap<String, Object> hashMap = new ConcurrentHashMap<>();
         if(ObjectUtil.isNotNull(studentExam)){
@@ -187,11 +211,15 @@ public class DataViewServiceImpl implements DataViewService {
             hashMap.put("lasttime",integers);
             hashMap.put("examcount",this.examCount());
         }
+        redisTemplate.opsForValue().setIfAbsent("getStuExamDataById",hashMap,10,TimeUnit.MINUTES);
         return hashMap;
     }
 
     @Override
     public List<Map<String, Object>> Scoreranking() {
+        if(redisTemplate.hasKey("Scoreranking")){
+            return (List<Map<String, Object>>) redisTemplate.opsForValue().get("Scoreranking");
+        }
         List<Map<String, Object>> maps = new ArrayList<>();
         List<StudentExam> studentExam=studentExamService.getUserAndScore();
         studentExam.stream().forEach(item->{
@@ -201,11 +229,15 @@ public class DataViewServiceImpl implements DataViewService {
             hashMap.put("value",item.getScore());
             maps.add(hashMap);
         });
+        redisTemplate.opsForValue().setIfAbsent("Scoreranking",maps,20,TimeUnit.MINUTES);
         return maps;
     }
 
     @Override
     public List<Map<String, Object>> getQuestionPercen() {
+        if(redisTemplate.hasKey("getQuestionPercen")){
+            return (List<Map<String, Object>>) redisTemplate.opsForValue().get("getQuestionPercen");
+        }
         List<Map<String, Object>> maps = new ArrayList<>();
         List<StudentQuestionVO> questionVOS= studentQuestionService.getQuestionPercen();
         questionVOS.stream().forEach(item->{
@@ -215,11 +247,15 @@ public class DataViewServiceImpl implements DataViewService {
             hashMap.put("value",item.getCounts());
             maps.add(hashMap);
         });
+        redisTemplate.opsForValue().setIfAbsent("getQuestionPercen",maps,30,TimeUnit.MINUTES);
         return maps;
     }
 
     @Override
     public List<Map<String,Object>> getStuQuesRanking(){
+        if(redisTemplate.hasKey("getStuQuesRanking")){
+            return (List<Map<String, Object>>) redisTemplate.opsForValue().get("getStuQuesRanking");
+        }
         List<Map<String, Object>> maps = new ArrayList<>();
         List<Map<String, Object>> finalNewMaps=new ArrayList<>();
         List<StudentQuestion> studentQuestions = studentQuestionService.getquestionCount();
@@ -259,18 +295,26 @@ public class DataViewServiceImpl implements DataViewService {
                 }
             }
         }
+        redisTemplate.opsForValue().setIfAbsent("getStuQuesRanking",finalNewMaps,30,TimeUnit.MINUTES);
         return finalNewMaps;
     }
     @Override
     public Integer getPassPercentage() {
+        if(redisTemplate.hasKey("getPassPercentage")){
+            return (Integer) redisTemplate.opsForValue().get("getPassPercentage");
+        }
         StudentExam studentExam = studentExamService.getPassPercentageData();
         DecimalFormat format = new DecimalFormat("##.00%");
         String per = format.format(studentExam.getQualify().doubleValue() / studentExam.getSum().doubleValue()).substring(0,2);
+        redisTemplate.opsForValue().setIfAbsent("getPassPercentage",Integer.valueOf(per),10,TimeUnit.MINUTES);
         return Integer.valueOf(per);
     }
 
     @Override
     public List<Map<String, Object>> perstuQualify() {
+        if(redisTemplate.hasKey("perstuQualify")){
+            return (List<Map<String, Object>>) redisTemplate.opsForValue().get("perstuQualify");
+        }
         List<Map<String, Object>> arrayList = new ArrayList<>();
         List<StudentExam> studentExams = studentExamService.perstuQualify();
         studentExams.stream().forEach(e->{
@@ -283,6 +327,7 @@ public class DataViewServiceImpl implements DataViewService {
             hashMap.put("value",percentage);
             arrayList.add(hashMap);
         });
+        redisTemplate.opsForValue().setIfAbsent("perstuQualify",arrayList,20,TimeUnit.MINUTES);
         return arrayList;
     }
 }

@@ -48,4 +48,6 @@ public interface DataViewService {
     List<Integer> getMyExamCount(Integer id);
 
     Map<String,Object> getWrongCount(Integer id);
+
+    Integer examPassPercen(String name);
 }

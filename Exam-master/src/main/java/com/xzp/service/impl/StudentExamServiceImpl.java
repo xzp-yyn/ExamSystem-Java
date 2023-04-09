@@ -62,6 +62,11 @@ public class StudentExamServiceImpl extends ServiceImpl<StudentExamMapper, Stude
     }
 
     @Override
+    public StudentExam getPassnumByName(String name) {
+        return baseMapper.getPassnumByName(name);
+    }
+
+    @Override
     @Transactional
     public Integer createStudentExam(Integer studentId, Integer examId) throws RuntimeException {
         // 查看该学生考试是否存在

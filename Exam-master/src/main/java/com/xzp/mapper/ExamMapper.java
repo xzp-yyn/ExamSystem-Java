@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 /**
  * 考试映射器
@@ -17,7 +19,7 @@ public interface ExamMapper extends BaseMapper<Exam> {
 
     String getNameByID(@Param("id") Integer id);
 
-
+    List<String>  getallName();
 
 }
 

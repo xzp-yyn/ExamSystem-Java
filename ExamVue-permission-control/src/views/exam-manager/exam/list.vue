@@ -541,7 +541,7 @@ export default {
 <style scoped>
 .app-container {
   background-color: #01132c;
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
 }

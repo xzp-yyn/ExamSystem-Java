@@ -4,6 +4,7 @@ import com.xzp.pojo.dto.SaveAnswerDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xzp.pojo.po.*;
 import com.xzp.pojo.vo.student.StudentQuestionVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -46,5 +47,7 @@ public interface StudentExamService extends IService<StudentExam> {
     StudentExam getStuExamDataById(Integer id);
 
     Integer getMyExamSum(Integer id);
+
+    StudentExam getPassnumByName(String name);
 
 }
