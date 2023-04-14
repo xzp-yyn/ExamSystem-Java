@@ -37,8 +37,8 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
 
     @Override
     public List<ChapterVO> getChapterVOS(Integer repoId) {
-        if(redisTemplate.hasKey("getChapterVOS")){
-            return (List<ChapterVO>) redisTemplate.opsForValue().get("getChapterVOS");
+        if(redisTemplate.hasKey("getChapterVOS:"+repoId)){
+            return (List<ChapterVO>) redisTemplate.opsForValue().get("getChapterVOS:"+repoId);
         }
 
         // 题库id相等
@@ -62,7 +62,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
             // 添加列表
             voList.add(chapterVO);
         }
-        redisTemplate.opsForValue().setIfAbsent("getChapterVOS",voList,10, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().setIfAbsent("getChapterVOS:"+repoId,voList,10, TimeUnit.MINUTES);
         return voList;
     }
 

@@ -51,6 +51,7 @@ public class Test {
 //        System.out.println(count);
         String start="2023-01-13 24:00:00";
         Date dateTime = DateUtil.parse(start);
+
         Date end = DateUtil.date();
         long l = DateUtil.between(dateTime, end, DateUnit.HOUR);
         System.out.println(l);
