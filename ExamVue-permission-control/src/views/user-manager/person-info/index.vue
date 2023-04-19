@@ -54,6 +54,7 @@
                   <el-image v-if="form.profile"
                             :src="form.profile"
                             class="avatar"
+                            ref="no-referrer|origin|unsafe-url"
                             alt="封面无法显示" />
                   <i v-else
                      class="el-icon-plus avatar-uploader-icon" />

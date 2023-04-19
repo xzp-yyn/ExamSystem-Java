@@ -120,7 +120,7 @@
           <el-avatar :key="scope.row.profile"
                      size="large"
                      :src="scope.row.profile">
-            <img src="http://wangpeng-imgsubmit.oss-cn-hangzhou.aliyuncs.com/img/202203231718487.png">
+            <img :src="scope.row.profile">
           </el-avatar>
         </template>
       </el-table-column>
@@ -435,8 +435,15 @@ export default {
 <style scoped>
 .app-container {
   background-color: #01132c;
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
+}
+
+::v-deep .el-drawer__body {
+  overflow: auto;
+}
+.el-pagination {
+  text-align: center;
 }
 </style>
