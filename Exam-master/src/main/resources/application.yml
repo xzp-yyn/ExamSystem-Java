@@ -41,6 +41,7 @@ mybatis-plus:
   configuration:
     # 显示日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
   # 配置类型别名所对应的包
   type-aliases-package: com.xzp.pojo
   # 扫描通用枚举的包

@@ -5,10 +5,6 @@ package com.xzp.other.utils;
 
 import cn.hutool.core.codec.Base62;
 
-import java.util.Base64.Encoder;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.Random;
 
 /**
@@ -33,10 +29,6 @@ public class TokenProcessor {
      */
     public String makeToken() {
         String token = (System.currentTimeMillis() + new Random().nextInt(999999999)) + "";
-        //            MessageDigest md = MessageDigest.getInstance("md5");
-//            byte[] md5 =  md.digest(token.getBytes());
-//            Encoder encoder = Base64.getEncoder();
-//            return new String(encoder.encode(md5));
         return Base62.encode(token);
     }
 }

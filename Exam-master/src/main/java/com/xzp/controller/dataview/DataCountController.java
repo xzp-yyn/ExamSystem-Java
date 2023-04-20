@@ -7,8 +7,8 @@ import com.xzp.other.result.BaseResult;
 import com.xzp.pojo.po.User;
 import com.xzp.service.DataViewService;
 import com.xzp.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 时间未到，资格未够，继续努力！
@@ -38,6 +39,9 @@ public class DataCountController {
     @Autowired
     private ExamMapper examMapper;
 
+    @Autowired
+    private ThreadPoolExecutor executor;
+
     @GetMapping("/commonview")
     public BaseResult getviewResylt(){
         Map<String, Object> map = new ConcurrentHashMap<>();
@@ -57,34 +61,93 @@ public class DataCountController {
 
     @GetMapping("/scoreranking")
     public BaseResult scorerankingData(){
-        List<Map<String, Object>> maps = dataViewService.Scoreranking();
-        return BaseResult.successData(maps);
+        List<Map<String, Object>> list = null;
+        try {
+            list = executor.submit(new Callable<List<Map<String, Object>>>() {
+                @Override
+                public List<Map<String, Object>> call() throws Exception {
+                    return dataViewService.Scoreranking();
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return BaseResult.successData(list);
     }
 
     @GetMapping("/question_percentage")
     public BaseResult question_percentage(){
-        List<Map<String, Object>> maps = dataViewService.getQuestionPercen();
-        return BaseResult.successData(maps);
+        List<Map<String, Object>> list=null;
+        try {
+             list = executor.submit(new Callable<List<Map<String, Object>>>() {
+                @Override
+                public List<Map<String, Object>> call() throws Exception {
+                    return dataViewService.getQuestionPercen();
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return BaseResult.successData(list);
     }
     @GetMapping("/stuqueRanking")
     public BaseResult stuQuesCount(){
-        return BaseResult.successData(dataViewService.getStuQuesRanking());
+        List<Map<String, Object>> list=null;
+
+        try {
+            list = executor.submit(new Callable<List<Map<String, Object>>>() {
+                @Override
+                public List<Map<String, Object>> call() throws Exception {
+                    return dataViewService.getStuQuesRanking();
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return BaseResult.successData(list);
     }
 
     @GetMapping("/passingPercentage")
     public BaseResult passingPercentage(){
+
         return BaseResult.successData(dataViewService.getPassPercentage());
     }
 
     @GetMapping("/perstuPercentage")
     public BaseResult perstuPercentage(){
-        return BaseResult.successData(dataViewService.perstuQualify());
+        AtomicReference<List<Map<String, Object>>> reference = new AtomicReference<>();
+        executor.execute(()->{
+            List<Map<String, Object>> list = dataViewService.perstuQualify();
+            reference.set(list);
+        });
+        return BaseResult.successData(reference.get());
     }
 
     @GetMapping("/stuexamdata/{token}")
     public BaseResult stuExamData(@PathVariable("token") String token){
         User user = userService.redisGetUser(token);
-        return BaseResult.successData(dataViewService.getStuExamDataById(user.getId()));
+        Map<String, Object> hashMap = null;
+        try {
+            hashMap = executor.submit(new Callable<Map<String, Object>>() {
+                @Override
+                public Map<String, Object> call() throws Exception {
+                    return dataViewService.getStuExamDataById(user.getId());
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return BaseResult.successData(hashMap);
     }
 
     @GetMapping("/stuExamCount/{token}")
@@ -95,7 +158,20 @@ public class DataCountController {
 
     @GetMapping("/examRanking")
     public BaseResult getStuExamRanking(){
-        return BaseResult.successData(dataViewService.getStuExamRanking());
+        List<List<String>> result=null;
+        try {
+            result = executor.submit(new Callable<List<List<String>>>() {
+                @Override
+                public List<List<String>> call() throws Exception {
+                    return dataViewService.getStuExamRanking();
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return BaseResult.successData(result);
     }
 
     @GetMapping("/getMyExamCount/{token}")

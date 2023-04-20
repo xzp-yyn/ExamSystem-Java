@@ -266,17 +266,6 @@ public class DataViewServiceImpl implements DataViewService {
                 hashMap.put("name",name);
                 hashMap.put("value",item.getCounts());
                 maps.add(hashMap);
-//                        maps.forEach(map -> {
-//                            if (!map.containsValue(name) || maps.size() == 0) {
-//                                Map<String, Object> hashMap = new ConcurrentHashMap<>();
-//                                hashMap.put("name", name);
-//                                hashMap.put("value", item.getCounts());
-//                                maps.add(hashMap);
-//                            } else {
-//                                Integer value = (Integer) map.get("value");
-//                                map.put("value", value + item.getCounts());
-//                            }
-//                        });
             });
             //遍历maps进行重复名称的数量相加
             for (int i = 0; i < maps.size(); i++) {
