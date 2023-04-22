@@ -123,12 +123,20 @@ public class DataCountController {
 
     @GetMapping("/perstuPercentage")
     public BaseResult perstuPercentage(){
-        AtomicReference<List<Map<String, Object>>> reference = new AtomicReference<>();
-        executor.execute(()->{
-            List<Map<String, Object>> list = dataViewService.perstuQualify();
-            reference.set(list);
-        });
-        return BaseResult.successData(reference.get());
+        List<Map<String, Object>> reference=null;
+        try {
+            reference=executor.submit(new Callable<List<Map<String, Object>>>() {
+                @Override
+                public List<Map<String, Object>> call() throws Exception {
+                    return dataViewService.perstuQualify();
+                }
+            }).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return BaseResult.successData(reference);
     }
 
     @GetMapping("/stuexamdata/{token}")

@@ -21,7 +21,7 @@ public class Mytask {
 
     @Bean
     public ThreadPoolExecutor threadPoolExecutor() {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(0, 10,
                 60L, TimeUnit.SECONDS,
                 new SynchronousQueue<Runnable>());
         return executor;
