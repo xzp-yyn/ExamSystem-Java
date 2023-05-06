@@ -63,8 +63,8 @@ export default {
 }
 #dv-full-screen-container {
   position: unset;
-  width: 100% !important;
-  height: 102% !important;
+  width: 90% !important;
+  height: 100% !important;
 }
 #data-view {
   position: absolute;

@@ -12,10 +12,14 @@ import com.xzp.service.OptionService;
 import com.xzp.service.QuestionService;
 import com.xzp.pojo.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -34,6 +38,13 @@ public class AdminQuestionController {
     @Autowired
     OptionService optionService;
 
+    private static String ques_key="questionAll";
+
+    private static String queryPage_key="queryPage";
+
+    @Autowired
+    private RedisTemplate<String,Object> redisTemplate;
+
     /**
      * 获取数量
      * @return 记录数量
@@ -50,6 +61,14 @@ public class AdminQuestionController {
     @GetMapping(value = "/queryAll")
     public PageResult queryAll(){
         List<Question> list = questionService.list();
+        if (redisTemplate.hasKey(ques_key)) {
+            Map<String,Object> result= (Map<String, Object>) redisTemplate.opsForValue().get(ques_key);
+            return PageResult.success((Long) result.get("count"),result.get("data"));
+        }
+        Map<String, Object> hashMap = new ConcurrentHashMap<>();
+        hashMap.put("count",list.size());
+        hashMap.put("data",list);
+        redisTemplate.opsForValue().setIfAbsent(ques_key,hashMap,20, TimeUnit.MINUTES);
         return PageResult.success((long) list.size(), list);
     }
 
@@ -60,7 +79,12 @@ public class AdminQuestionController {
      */
     @GetMapping(value = "/queryPage")
     public PageResult queryPage(QueryPageQuestionDTO queryPageQuestionDTO){
+        if(redisTemplate.hasKey(queryPage_key)){
+            Page<QuestionVO> page = (Page<QuestionVO>) redisTemplate.opsForValue().get(queryPage_key);
+            return PageResult.success(page.getTotal(), page.getRecords());
+        }
         Page<QuestionVO> page = questionService.getQuestionVOPage(queryPageQuestionDTO);
+        redisTemplate.opsForValue().setIfAbsent(queryPage_key,page,20,TimeUnit.MINUTES);
         return PageResult.success(page.getTotal(), page.getRecords());
     }
 
@@ -71,6 +95,8 @@ public class AdminQuestionController {
      */
     @PostMapping(value = "/addOne")
     public BaseResult addOne(@RequestBody Question question){
+        this.deleKey(ques_key);
+        this.deleKey(queryPage_key);
         return BaseResult.boolResult(questionService.save(question));
     }
 
@@ -81,6 +107,7 @@ public class AdminQuestionController {
      */
     @DeleteMapping(value = "/deleteSome")
     public BaseResult deleteSome(@RequestBody List<Question> questions){
+
         return BaseResult.boolResult(questionService.removeBatchByIds(questions));
     }
 
@@ -185,4 +212,15 @@ public class AdminQuestionController {
         return BaseResult.successData(url);
     }
 
+    public boolean deleKey(String key){
+        if (redisTemplate.hasKey(key)) {
+            return redisTemplate.delete(key);
+        }
+        return false;
+    }
+    public boolean deleKey(){
+        redisTemplate.delete(ques_key);
+        redisTemplate.delete(queryPage_key);
+        return true;
+    }
 }

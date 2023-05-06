@@ -3,6 +3,7 @@ package com.xzp.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xzp.mapper.QuestionMapper;
+import com.xzp.other.anno.RemoveRedis;
 import com.xzp.pojo.po.Chapter;
 import com.xzp.pojo.po.Question;
 import com.xzp.pojo.vo.ChapterVO;
@@ -35,10 +36,12 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
     @Autowired
     private QuestionMapper questionMapper;
 
+    private static String chapter_key="getChapterVOS:";
+
     @Override
     public List<ChapterVO> getChapterVOS(Integer repoId) {
-        if(redisTemplate.hasKey("getChapterVOS:"+repoId)){
-            return (List<ChapterVO>) redisTemplate.opsForValue().get("getChapterVOS:"+repoId);
+        if(redisTemplate.hasKey(chapter_key+repoId)){
+            return (List<ChapterVO>) redisTemplate.opsForValue().get(chapter_key+repoId);
         }
 
         // 题库id相等
@@ -62,7 +65,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
             // 添加列表
             voList.add(chapterVO);
         }
-        redisTemplate.opsForValue().setIfAbsent("getChapterVOS:"+repoId,voList,10, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().setIfAbsent(chapter_key+repoId,voList,10, TimeUnit.MINUTES);
         return voList;
     }
 
@@ -90,6 +93,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter>
         for (Chapter cur : chapters) {
             baseMapper.insert(cur);
         }
+
 
         return true;
     }
